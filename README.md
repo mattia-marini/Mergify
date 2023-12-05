@@ -1,3 +1,5 @@
+Se clonate questo repo ricordate di fare cd nella root directory e runnare `npm install` per installare le dipendenze di node
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
