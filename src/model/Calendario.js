@@ -1,4 +1,5 @@
 import Event from "./Event"
+import { dpr } from "../utils/Misc.js"
 
 class Calendario {
 	events = [
@@ -10,9 +11,11 @@ class Calendario {
 		new Event(6, 5, 10),
 		new Event(7, 2, 8),
 	];
-	printInCanvas(context) {
-		const width = window.innerWidth;
-		const height = window.innerHeight;
+	printInCanvas(canvas) {
+
+		const context = canvas.getContext("2d");
+		const width = canvas.width / dpr;
+		const height = canvas.height / dpr;
 		this.events.forEach(event => {
 			context.roundRect(width / 7 * (event.day - 1) + 10, height / 10 * event.startH, width / 7 - 20, (event.endH - event.startH) / 10 * height, 10)
 			context.font = "12pt Helvetica Neue"
