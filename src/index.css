@@ -12,3 +12,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+	font-family: 'ShoikaHairline';
+	src: url('../public/fonts/Shoika\ Hairline.ttf');
+	font-display: swap;
+  }
+
+ @font-face {
+	font-family: 'ShoikaLight';
+	src: url('../public/fonts/Shoika\ Light.ttf');
+	font-display: swap;
+  } 
+
+@font-face {
+	font-family: 'ShoikaMedium';
+	src: url('../public/fonts/Shoika\ Medium.ttf');
+	font-display: swap;
+  }

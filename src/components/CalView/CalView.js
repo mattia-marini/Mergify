@@ -4,12 +4,22 @@ import { mouseUp, mouseDown, mouseMove } from "../CalView/SelectHandlers.js";
 import Calendario from "../../model/Calendario.js";
 import { dpr } from "../../utils/Misc.js";
 
+// const myFont = new FontFace('Georgia', 'url(public/fonts/Georgia.ttf) format("ttf")');
+
+// myFont.load().then((font) => {
+// 	document.fonts.add(font);
+
+// 	console.log('Font loaded');
+// });
+
 const Tools = {
 	Select: 0,
 	DrawEvent: 1
 }
 
 
+const calLabelsYSpacing = 30 //distanza fra etichette giorni dal calendario stesso
+const calLabelsXSpacing = 30 //distanza fra etichette ore dal calendario stesso
 
 class CalView extends React.Component {
 
@@ -20,7 +30,6 @@ class CalView extends React.Component {
 	cal = new Calendario()
 
 
-	continents = ["sesso", "ops", "ops", "ops"]
 
 	constructor() {
 		super();
@@ -32,8 +41,12 @@ class CalView extends React.Component {
 			forceRender: false
 		}
 		const root = document.documentElement;
-		this.eventXPadding = parseFloat(getComputedStyle(root).getPropertyValue('--event-x-padding'));
-		this.eventYPadding = parseFloat(getComputedStyle(root).getPropertyValue('--event-y-padding'));
+		this.eventLPadding = parseFloat(getComputedStyle(root).getPropertyValue('--event-l-padding'));
+		this.eventRPadding = parseFloat(getComputedStyle(root).getPropertyValue('--event-r-padding'));
+		this.eventTPadding = parseFloat(getComputedStyle(root).getPropertyValue('--event-t-padding'));
+		this.eventBPadding = parseFloat(getComputedStyle(root).getPropertyValue('--event-b-padding'));
+
+
 	}
 
 	render() {
@@ -105,22 +118,48 @@ class CalView extends React.Component {
 
 	}
 
+	getCanvasActualSize = (canvas) => {
+		return [canvas.width / dpr - this.eventLPadding - this.eventRPadding, canvas.height / dpr - this.eventTPadding - this.eventBPadding]
+	}
+
 	drawCal = () => {
 		const canvas = this.bottomLayerRef.current;
 		const context = canvas.getContext("2d");
-		const width = canvas.width / dpr - 2 * this.eventXPadding;
-		const height = canvas.height / dpr - 2 * this.eventYPadding;
-		context.clearRect(0, 0, width, height);
+		const [width, height] = this.getCanvasActualSize(canvas)
+
+		context.clearRect(0, 0, canvas.width, canvas.height);
 		context.beginPath();
-		for (let i = 1; i <= 6; i++) {
-			context.moveTo(width / 7 * i + this.eventXPadding, 0);
-			context.lineTo(width / 7 * i + this.eventXPadding, height + 2 * this.eventYPadding);
+		context.textAlign = "right";
+		context.font = "12px ShoikaLight";
+		context.textBaseline = "middle";
+		context.lineWidth = 0.5;
+
+		for (let i = 0; i <= 7; i++) {
+			context.moveTo(width / 7 * i + this.eventLPadding, this.eventTPadding);
+			context.lineTo(width / 7 * i + this.eventLPadding, height + this.eventTPadding);
 		}
-		//this.cal.printInCanvas(canvas);
+
+		for (let i = 0; i <= 24; i++) {
+			context.moveTo(this.eventLPadding, height / 24 * i + this.eventTPadding);
+			context.lineTo(width + this.eventLPadding, height / 24 * i + this.eventTPadding)
+			context.fillText((i > 9 ? i.toString() : "0".concat(i)).concat(":00")
+				, this.eventLPadding - calLabelsXSpacing, height / 24 * i + this.eventTPadding)
+		}
+
 		context.stroke();
+
+		const days = ["M", "T", "W", "T", "F", "S", "S"]
+
+		days.forEach((day, i) => {
+			context.fillText(day, width / 7 * i + this.eventLPadding + width / 14, this.eventTPadding - calLabelsYSpacing)
+		});
+
+		//this.cal.printInCanvas(canvas);
 	}
 
 	componentDidMount() {
+
+
 
 		const canvas1 = this.bottomLayerRef.current;
 		const canvas2 = this.topLayerRef.current;
@@ -131,25 +170,27 @@ class CalView extends React.Component {
 		const bounds = this.containerRef.current.getBoundingClientRect()
 
 		canvas1.width = bounds.width * dpr;
-		canvas1.height = bounds.height * dpr;
+		canvas1.height = 2 * bounds.height * dpr;
 
 		canvas2.width = bounds.width * dpr;
-		canvas2.height = bounds.height * dpr;
+		canvas2.height = 2 * bounds.height * dpr;
 
 		context1.scale(dpr, dpr);
 		context2.scale(dpr, dpr);
 
+		document.fonts.ready.then(() =>{
+			this.drawCal();
+		});
 
 		this.drawCal();
-
 		const onResize = () => {
 
 			const bounds = this.containerRef.current.getBoundingClientRect()
 			canvas1.width = bounds.width * dpr;
-			canvas1.height = bounds.height * dpr;
+			canvas1.height = 2 * bounds.height * dpr;
 
 			canvas2.width = bounds.width * dpr;
-			canvas2.height = bounds.height * dpr;
+			canvas2.height = 2 * bounds.height * dpr;
 
 			context1.scale(dpr, dpr);
 			context2.scale(dpr, dpr);

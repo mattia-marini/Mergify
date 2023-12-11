@@ -1,0 +1,31 @@
+.sidebar {
+	height: 100%;
+	min-width: 300px;
+	max-width: 400px;
+}
+
+#next {
+	border-radius: 0 5px 5px 0;
+	background-color: var(--mfgray);
+	color: var(--mfalmostwhite);
+}
+
+#next:hover {
+	background-color: var(--mflightgray);
+}
+
+#prev {
+	border-radius: 5px 0 0 5px;
+	background-color: var(--mfalmostwhite);
+	color: var(--mfgray);
+}
+
+#prev:hover {
+	background-color: var(--mflwhitegray);
+}
+
+button {
+	cursor: pointer;
+	border: none;
+	font-size: medium;
+}

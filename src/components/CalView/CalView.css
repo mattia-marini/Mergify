@@ -1,21 +1,32 @@
 :root {
-	--event-x-padding: 20px;
-	--event-y-padding: 20px;
+	--event-l-padding: 100px;
+	--event-t-padding: 100px;
+	--event-r-padding: 30px;
+	--event-b-padding: 30px;
+
+	--single-event-margin:1px;
+
+	--mfdarkgray: #303030;
+	--mfgray: #424242;
+	--mflightgray: #545454;
+	--mfwhitegray: #eaeaea;
+	--mfalmostwhite: #f3f3f3;
 }
+  
 
 .bottomLayer {
 	position: absolute;
-	height: 100%;
+	height: 200%;
 	width: 100%;
-	background-color: brown;
 	box-sizing: border-box;
 	display: block;
 	z-index: 1;
+	font-family: "ShoikaLight";
 }
 
 .topLayer {
 	position: absolute;
-	height: 100%;
+	height: 200%;
 	width: 100%;
 	box-sizing: border-box;
 	display: block;
@@ -25,19 +36,23 @@
 }
 
 .event {
-	border: 1pt solid black;
-	width: calc(100% / 7 - 20px);
+	width: calc(100% / 7 - 2* var(--single-event-margin));
 	border-radius: 10px;
 	position: absolute;
 	z-index: 3;
-	transform: translateX(10px);
+	transform: translateX(var(--single-event-margin));
 	margin: 0px;
 	padding: 8px;
 	box-sizing: border-box;
 	user-select: none;
 	overflow: hidden;
 	white-space: nowrap;
-	text-overflow: ellipsis
+	text-overflow: ellipsis;
+	background-color: var(--mfdarkgray);
+	color: var(--mfalmostwhite);
+	opacity: 0.95;
+	font: 'ShoikaMedium';
+	font-size: small;
 }
 
 .event:hover {
@@ -46,16 +61,23 @@
 
 .events {
 	position: absolute;
-	height: calc(100% - 40px);
-	width: calc(100% - 40px);
+	height: calc(200% - var(--event-t-padding) - var(--event-b-padding));
+	width: calc(100% - var(--event-l-padding) - var(--event-r-padding));
 	box-sizing: border-box;
-	top: 20px;
-	left: 20px;
+	top: var(--event-t-padding);
+	left: var(--event-l-padding);
 }
 
 .container {
 	position: relative;
 	flex-grow: 1;
 	display: flex;
-	background-color: blue
+	overflow-y: scroll;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	background-color: var(--mfalmostwhite);
+}
+
+.container::-webkit-scrollbar {
+	display: none;
 }

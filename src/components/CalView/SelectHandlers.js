@@ -14,6 +14,7 @@ function getComponentCoordinates(e, component) {
 
 export const mouseDown = (component) => {
 	return (e) => {
+
 		[prevClickX, prevClickY] = getComponentCoordinates(e, component.topLayerRef.current)
 	}
 }
@@ -41,20 +42,20 @@ export const mouseUp = (component) => {
 		const context2 = canvas2.getContext("2d");
 		context2.clearRect(0, 0, canvas2.width, canvas2.height)
 
-		const width = (canvas2.width - 2 * component.eventXPadding )/ Utils.dpr;
-		const height = (canvas2.height - 2 * component.eventYPadding) / Utils.dpr;
+		const [width, height] = component.getCanvasActualSize(component.topLayerRef.current)
 
 		const colWidth = width / 7;
 
 		const [currX, currY] = getComponentCoordinates(e, component.topLayerRef.current)
 
-		if (Math.floor((currX - component.eventXPadding) / colWidth) === Math.floor((prevClickX - component.eventXPadding) / colWidth)) {
+		if (currX > component.eventLPadding && (currX < width + component.eventLPadding) &&
+			(Math.floor((currX - component.eventLPadding) / colWidth) === Math.floor((prevClickX - component.eventLPadding) / colWidth))) {
 
 			const [minX, minY, , maxY] = Utils.normalizeRect(prevClickX, currX, prevClickY, currY);
 			component.cal.addEvent(new Event(
-				Math.floor((minX - component.eventXPadding) / colWidth) + 1,
-				Math.max((minY-component.eventYPadding) / height * 10, 0),
-				Math.min((maxY-component.eventYPadding) / height * 10, 10)));
+				Math.floor((minX - component.eventLPadding) / colWidth) + 1,
+				Math.max((minY - component.eventTPadding) / height * 10, 0),
+				Math.min((maxY - component.eventTPadding) / height * 10, 10)));
 			component.drawCal();
 			component.setState({ forceRender: true })
 

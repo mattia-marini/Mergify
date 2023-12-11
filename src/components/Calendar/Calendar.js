@@ -10,7 +10,7 @@ export default function Calendar() {
 				<Toolbar className='toolbar' ></Toolbar>
 				<div className='hflex'>
 					<CalView className='calView'></CalView>
-					<Sidebar className='sidebar'></Sidebar>
+					<Sidebar />
 				</div>
 			</div>
 	)

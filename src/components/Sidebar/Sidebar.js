@@ -3,6 +3,9 @@ import "./Sidebar.css"
 
 export default function Sidebar({ ...props }) {
 	return (
-		<div {...props}>Sidebar</div>
+		<div className='sidebar' >
+			<button id='prev'>&lt;</button>
+			<button id='next'>&gt;</button>
+		</div>
 	)
 }

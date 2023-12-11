@@ -1,9 +1,12 @@
 import './App.css';
 import Calendar from "./components/Calendar"
+import { format, isMonday } from 'date-fns'
+import { useEffect } from "react"
 
 function App() {
+
 	return (
-		<div style={{width:"100vw", height:"100vh"}}>
+		<div style={{ width: "100vw", height: "100vh" }}>
 			<Calendar />
 		</div>
 	);

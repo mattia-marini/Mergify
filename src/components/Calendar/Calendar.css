@@ -9,20 +9,13 @@
 	width: 100%;
 	height: 100%;
 	box-sizing: border-box;
-	background-color: antiquewhite;
+	background-color: var(--mfwhitegray);
+	font-family: "ShoikaLight";
 }
 
 .toolbar {
-	background-color: aqua;
 }
 
 .calView {
 	flex-grow: 1;
-	background-color: blue;
-}
-
-.sidebar {
-	height: 100%;
-	width: 400px;
-	background-color: green;
 }
