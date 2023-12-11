@@ -3,6 +3,7 @@ import { dpr } from "../utils/Misc.js"
 
 class Calendario {
 	events = [
+		new Event(1, 0, 1, "Evento 1"),
 		new Event(1, 2, 3, "Evento 1"),
 		new Event(1, 4, 7, "Evento 1"),
 		new Event(1, 9, 10, "Riunione"),
@@ -11,17 +12,19 @@ class Calendario {
 		new Event(6, 5, 10),
 		new Event(7, 2, 8),
 	];
-	printInCanvas(canvas) {
 
-		const context = canvas.getContext("2d");
-		const width = canvas.width / dpr;
-		const height = canvas.height / dpr;
-		this.events.forEach(event => {
-			context.roundRect(width / 7 * (event.day - 1) + 10, height / 10 * event.startH, width / 7 - 20, (event.endH - event.startH) / 10 * height, 10)
-			context.font = "12pt Helvetica Neue"
-			context.fillText(event.description, width / 7 * (event.day - 1) + 20, height / 10 * event.startH + 20);
-		});
-	}
+	// printInCanvas(canvas) {
+
+	// 	const context = canvas.getContext("2d");
+	// 	const width = canvas.width / dpr;
+	// 	const height = canvas.height / dpr;
+	// 	this.events.forEach(event => {
+	// 		context.roundRect(width / 7 * (event.day - 1) + 10, height / 10 * event.startH, width / 7 - 20, (event.endH - event.startH) / 10 * height, 10)
+	// 		context.font = "12pt Helvetica Neue"
+	// 		context.fillText(event.description, width / 7 * (event.day - 1) + 20, height / 10 * event.startH + 20);
+	// 	});
+	// }
+
 
 	addEvent(event) {
 		this.events.push(event)

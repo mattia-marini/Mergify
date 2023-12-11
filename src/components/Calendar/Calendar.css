@@ -1,0 +1,28 @@
+.hflex {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+}
+.vflex{
+	display:flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	background-color: antiquewhite;
+}
+
+.toolbar {
+	background-color: aqua;
+}
+
+.calView {
+	flex-grow: 1;
+	background-color: blue;
+}
+
+.sidebar {
+	height: 100%;
+	width: 400px;
+	background-color: green;
+}

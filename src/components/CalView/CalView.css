@@ -1,0 +1,61 @@
+:root {
+	--event-x-padding: 20px;
+	--event-y-padding: 20px;
+}
+
+.bottomLayer {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: brown;
+	box-sizing: border-box;
+	display: block;
+	z-index: 1;
+}
+
+.topLayer {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	box-sizing: border-box;
+	display: block;
+	z-index: 2;
+	top: 0;
+	left: 0;
+}
+
+.event {
+	border: 1pt solid black;
+	width: calc(100% / 7 - 20px);
+	border-radius: 10px;
+	position: absolute;
+	z-index: 3;
+	transform: translateX(10px);
+	margin: 0px;
+	padding: 8px;
+	box-sizing: border-box;
+	user-select: none;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis
+}
+
+.event:hover {
+	background-color: gray;
+}
+
+.events {
+	position: absolute;
+	height: calc(100% - 40px);
+	width: calc(100% - 40px);
+	box-sizing: border-box;
+	top: 20px;
+	left: 20px;
+}
+
+.container {
+	position: relative;
+	flex-grow: 1;
+	display: flex;
+	background-color: blue
+}

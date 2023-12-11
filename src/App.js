@@ -1,10 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
-import  Canvas  from "./components/Canvas"
+import Calendar from "./components/Calendar"
 
 function App() {
 	return (
-		<Canvas/ >
+		<div style={{width:"100vw", height:"100vh"}}>
+			<Calendar />
+		</div>
 	);
 }
 
