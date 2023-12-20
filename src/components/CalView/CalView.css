@@ -1,17 +1,3 @@
-:root {
-	--event-l-padding: 100px;
-	--event-t-padding: 100px;
-	--event-r-padding: 30px;
-	--event-b-padding: 30px;
-
-	--single-event-margin:1px;
-
-	--mfdarkgray: #303030;
-	--mfgray: #424242;
-	--mflightgray: #545454;
-	--mfwhitegray: #eaeaea;
-	--mfalmostwhite: #f3f3f3;
-}
   
 
 .bottomLayer {
@@ -75,7 +61,7 @@
 	overflow-y: scroll;
 	-ms-overflow-style: none;
 	scrollbar-width: none;
-	background-color: var(--mfalmostwhite);
+	background-color: var(--whitegray);
 }
 
 .container::-webkit-scrollbar {

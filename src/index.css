@@ -30,3 +30,17 @@ code {
 	src: url('../public/fonts/Shoika\ Medium.ttf');
 	font-display: swap;
   }
+  :root {
+	--event-l-padding: 100px;
+	--event-t-padding: 100px;
+	--event-r-padding: 30px;
+	--event-b-padding: 30px;
+
+	--single-event-margin:1px;
+
+	--mfdarkgray: #303030;
+	--mfgray: #424242;
+	--mflightgray: #818181;
+	--mfwhitegray: #eaeaea;
+	--mfalmostwhite: #f3f3f3;
+}

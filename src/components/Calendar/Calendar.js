@@ -7,7 +7,7 @@ import Sidebar from "../Sidebar"
 export default function Calendar() {
 	return (
 			<div className='vflex'>
-				<Toolbar className='toolbar' ></Toolbar>
+				<Toolbar/>
 				<div className='hflex'>
 					<CalView className='calView'></CalView>
 					<Sidebar />

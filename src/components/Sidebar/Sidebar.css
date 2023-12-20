@@ -1,7 +1,32 @@
+:root {
+	--sidebar-vspacing: 10px;
+}
+
 .sidebar {
-	height: 100%;
-	min-width: 300px;
-	max-width: 400px;
+	display: flex;
+	flex-direction: column;
+	height: calc(100% - 20px);
+	width: 300px;
+	align-items: center;
+	padding: 20px;
+	border-radius: 12px;
+	background-color: var(--mfalmostwhite);
+	margin: 20px 20px 0 20px;
+	box-sizing: border-box;
+	justify-items: center;
+}
+
+@media (min-width: 1000px) {
+	.sidebar {
+		width: 400px;
+	}
+}
+
+button {
+	cursor: pointer;
+	border: none;
+	font-size: medium;
+	border-radius: 5px;
 }
 
 #next {
@@ -21,11 +46,64 @@
 }
 
 #prev:hover {
-	background-color: var(--mflwhitegray);
+	background-color: var(--mfwhitegray);
 }
 
-button {
-	cursor: pointer;
-	border: none;
-	font-size: medium;
+#date {
+	display: flex;
+	align-items: baseline;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+#calGrid {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	width: 100%;
+	grid-row-gap: 0px;
+	justify-items: center;
+	align-items: center;
+}
+
+.gridItem {
+	color: var(--mfdarkgray);
+	margin-top: var(--sidebar-vspacing);
+	margin-bottom: var(--sidebar-vspacing);
+}
+
+.grayDays {
+	color: var(--mflightgray);
+	margin-top: var(--sidebar-vspacing);
+	margin-bottom: var(--sidebar-vspacing);
+}
+
+.blackDays {
+	color: var(--mfdarkgray);
+	margin-top: var(--sidebar-vspacing);
+	margin-bottom: var(--sidebar-vspacing);
+}
+
+.whiteBlack {
+	background-color: var(--mfdarkgray);
+	color: var(--mfwhitegray);
+}
+
+.blackWhite {
+	background-color: var(--mfwhitegray);
+	color: var(--mfdarkgray);
+}
+
+#bottomButtons {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+#left {
+	display: flex;
+	flex-direction: column;
 }

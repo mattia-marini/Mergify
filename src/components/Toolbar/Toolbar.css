@@ -1,0 +1,81 @@
+:root{
+	--toolbar-height:50px;
+}
+#toolbar {
+	display: flex;
+	gap: 10px;
+}
+
+
+#navigation{
+	box-sizing: border-box;
+	margin: 20px 0 0 0;
+	border-radius: 12px;
+	max-width: 300px;
+	flex-grow: 1;
+	height: var(--toolbar-height);
+	display: flex;
+}
+
+#tools {
+	box-sizing: border-box;
+	margin: 20px 0 0 0;
+	border-radius: 12px;
+	flex-grow: 1;
+	background-color: var(--mfalmostwhite);
+	height: var(--toolbar-height);
+}
+
+#user {
+	width: 300px;
+	height: var(--toolbar-height);
+	border-radius: 12px;
+	background-color: var(--mfalmostwhite);
+	margin: 20px 20px 0 20px;
+	box-sizing: border-box;
+	display: flex;
+	align-items:center;
+	padding: 0 20px 0 20px;
+	gap:20px;
+}
+
+#pip{
+color: var(--mfalmostwhite);
+background-color: var(--mfgray);
+border-radius: 100%;
+height: 40px;
+width: 40px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: 'ShoikaMedium';
+}
+
+#pip:hover{
+background-color: var(--mflightgray);
+}
+
+@media (min-width: 1000px) {
+	#user {
+		width: 400px;
+	}
+}
+
+#myCal{
+flex-grow: 1;
+background-color: var(--mfdarkgray);
+color: var(--mfalmostwhite);
+border-radius: 0;
+}
+#myCal:hover{
+background-color: var(--mflightgray);
+}
+#myGroups{
+flex-grow: 1;
+background-color: var(--mfalmostwhite);
+color: var(--mfdarkgray);
+border-radius: 0 12px 12px 0;
+}
+#myGroups:hover{
+background-color: var(--mfwhitegray);
+}
