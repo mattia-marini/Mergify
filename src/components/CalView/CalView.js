@@ -1,6 +1,6 @@
 import React from 'react';
 import "./CalView.css"
-import { mouseUp, mouseDown, mouseMove } from "../CalView/SelectHandlers.js";
+import { mouseUp, mouseDown, mouseMove, dragHandler, handleBorders, handleMouseLeave} from "../CalView/SelectHandlers.js";
 import Calendario from "../../model/Calendario.js";
 import { dpr } from "../../utils/Misc.js";
 
@@ -31,7 +31,7 @@ class CalView extends React.Component {
 
 
 
-	constructor() {
+	constructor({currWeek, changeWeek}) {
 		super();
 		this.bottomLayerRef = React.createRef();
 		this.topLayerRef = React.createRef();
@@ -41,12 +41,14 @@ class CalView extends React.Component {
 			forceRender: false
 		}
 		const root = document.documentElement;
+
 		this.eventLPadding = parseFloat(getComputedStyle(root).getPropertyValue('--event-l-padding'));
 		this.eventRPadding = parseFloat(getComputedStyle(root).getPropertyValue('--event-r-padding'));
 		this.eventTPadding = parseFloat(getComputedStyle(root).getPropertyValue('--event-t-padding'));
 		this.eventBPadding = parseFloat(getComputedStyle(root).getPropertyValue('--event-b-padding'));
 
-
+		this.currWeek = currWeek
+		this.changeWeek = changeWeek
 	}
 
 	render() {
@@ -98,21 +100,31 @@ class CalView extends React.Component {
 	// 		</div >);
 	// }
 
+
 	renderEvents() {
 		return (
 
 			this.cal.events.map((event, index) => {
-				return (
-					<div className="event" key={index}
-						onClick={() => console.log(event.description)}
-						style={{
-							top: `calc(${event.startH} / 10 * 100%)`,
-							left: `calc((${event.day} - 1) / 7 * 100%)`,
-							height: `calc(${event.endH} / 10 * 100% - ${event.startH} / 10 * 100%)`
-						}}>
-						{event.description}
-					</div>
-				);
+				if (event.startDate.getFullYear() == this.currWeek.getFullYear()
+					&& event.startDate.getMonth() == this.currWeek.getMonth()
+					&& (event.startDate.getDate() < this.currWeek.getDate() + 7 && event.startDate.getDate() >= this.currWeek.getDate())) {
+					return (
+						<div className="outerEvent" key={index}
+							onClick={() => console.log(event.description)}
+							onMouseMove={handleBorders()}
+							onMouseLeave={handleMouseLeave()}
+							onDragEnd={dragHandler(this)}
+							style={{
+								top: `calc(${event.startDate.getHours()} / 24 * 100% - 3px)`,
+								left: `calc((${event.startDate.getDay()} - 1) / 7 * 100%)`,
+								height: `calc(${event.endDate.getHours()} / 24 * 100% - ${event.startDate.getHours()} / 24 * 100% + 6px)`
+							}}>
+							<div className='innerEvent'>
+								{event.description}
+							</div>
+						</div>
+					)
+				}
 			})
 		)
 
@@ -178,7 +190,7 @@ class CalView extends React.Component {
 		context1.scale(dpr, dpr);
 		context2.scale(dpr, dpr);
 
-		document.fonts.ready.then(() =>{
+		document.fonts.ready.then(() => {
 			this.drawCal();
 		});
 

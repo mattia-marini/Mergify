@@ -3,14 +3,14 @@ import { dpr } from "../utils/Misc.js"
 
 class Calendario {
 	events = [
-		new Event(1, 0, 1, "Evento 1"),
-		new Event(1, 2, 3, "Evento 1"),
-		new Event(1, 4, 7, "Evento 1"),
-		new Event(1, 9, 10, "Riunione"),
-		new Event(2, 4, 5, "Compleanno"),
-		new Event(5, 8, 10, "Boh"),
-		new Event(6, 5, 10),
-		new Event(7, 2, 8),
+		new Event(2023, 11, 1, 0, 0, 1, 0, "Evento 1"),
+		new Event(2023, 11, 1, 2, 0, 3, 0, "Evento 1"),
+		new Event(2023, 11, 1, 4, 0, 7, 0, "Evento 1"),
+		new Event(2023, 11, 1, 9, 0, 10, 0, "Riunione"),
+		new Event(2023, 11, 2, 4, 0, 5, 0, "Compleanno"),
+		new Event(2023, 11, 5, 8, 0, 10, 0, "Boh"),
+		new Event(2023, 11, 6, 5, 0, 10, 0, "2"),
+		new Event(2023, 11, 7, 2, 0, 8, 0, "desc"),
 	];
 
 	// printInCanvas(canvas) {

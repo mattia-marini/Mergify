@@ -4,6 +4,8 @@ import * as Utils from "../../utils/Misc.js"
 let prevClickX = -1;
 let prevClickY = -1;
 
+let borderDrag = 0;
+
 function getComponentCoordinates(e, component) {
 	const bounds = component.getBoundingClientRect()
 	return [
@@ -68,4 +70,46 @@ export const mouseUp = (component) => {
 	}
 }
 
+export const dragHandler = (component) => {
+	return (event) => {
+		console.log(component.cal[event.target.key])
+	}
+}
 
+export const handleBorders = () => {
+	return (event) => {
+
+		const borderThickness = 6;
+
+		const eventBox = event.currentTarget.getBoundingClientRect()
+
+		const innerDiv = event.currentTarget.children[0].style
+		if (event.clientY <= eventBox.y + borderThickness) {
+			innerDiv.borderTop = "5px solid black"
+			innerDiv.borderRadius = "0 0 10px 10px"
+			innerDiv.backgroundColor = "var(--mfdarkgray)"
+			document.body.style.cursor = 'row-resize';
+		}
+		else if (event.clientY >= eventBox.y + eventBox.height - borderThickness) {
+			innerDiv.borderBottom = "5px solid black"
+			innerDiv.borderRadius = "10px 10px 0 0"
+			innerDiv.backgroundColor = "var(--mfdarkgray)"
+			document.body.style.cursor = 'row-resize';
+		}
+		else {
+			event.target.style.backgroundColor = "black"
+			innerDiv.border = "5px solid transparent"
+			innerDiv.borderRadius = "10px"
+			document.body.style.cursor = 'default';
+		}
+	}
+}
+export const handleMouseLeave = () => {
+	return (event) => {
+		document.body.style.cursor = 'default'
+		const innerDiv = event.currentTarget.children[0].style
+		innerDiv.backgroundColor = "var(--mfdarkgray)"
+		innerDiv.border = "5px solid transparent"
+		innerDiv.borderRadius = "10px"
+	}
+}

@@ -21,28 +21,33 @@
 	left: 0;
 }
 
-.event {
+.outerEvent {
 	width: calc(100% / 7 - 2* var(--single-event-margin));
-	border-radius: 10px;
 	position: absolute;
 	z-index: 3;
 	transform: translateX(var(--single-event-margin));
 	margin: 0px;
-	padding: 8px;
+	padding: 0px;
 	box-sizing: border-box;
 	user-select: none;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	background-color: var(--mfdarkgray);
-	color: var(--mfalmostwhite);
-	opacity: 0.95;
 	font: 'ShoikaMedium';
 	font-size: small;
 }
 
-.event:hover {
-	background-color: gray;
+.innerEvent{
+	margin: 3px 0 3px 0;
+	border: 5px solid transparent;
+	border-radius: 10px;
+	box-sizing:border-box;
+	height: calc(100% - 6px);
+	padding:8px;
+	width:100%;
+	background-color: var(--mfdarkgray);
+	color: var(--mfalmostwhite);
+	opacity: 0.95;
 }
 
 .events {
