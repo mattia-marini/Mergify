@@ -54,6 +54,7 @@ button {
 	align-items: baseline;
 	padding-top: 0;
 	padding-bottom: 0;
+	user-select: none;
 }
 
 #calGrid {
@@ -64,6 +65,7 @@ button {
 	justify-items: center;
 	align-items: center;
 	position: relative;
+	user-select: none;
 }
 
 

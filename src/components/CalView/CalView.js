@@ -1,6 +1,6 @@
 import React from 'react';
 import "./CalView.css"
-import { mouseUp, mouseDown, mouseMove, dragHandler, handleBorders, handleMouseLeave} from "../CalView/SelectHandlers.js";
+import { mouseUp, mouseDown, mouseMove, dragHandler, handleBorders, handleMouseLeave, handleDoubleClick} from "../CalView/SelectHandlers.js";
 import Calendario from "../../model/Calendario.js";
 import { dpr } from "../../utils/Misc.js";
 import {isSameWeek, getNormalizedDay} from '../../utils/Date.js'
@@ -53,7 +53,7 @@ class CalView extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.currWeek);
+		//console.log(this.props.currWeek);
 		return (
 			<div ref={this.containerRef} className="container" style={{}}>
 				<canvas ref={this.bottomLayerRef}
@@ -75,11 +75,13 @@ class CalView extends React.Component {
 			this.cal.events.map((event, index) => {
 				if (isSameWeek(event.startDate, this.props.currWeek)) {
 					return (
-						<div className="outerEvent" key={index}
-							onClick={() => console.log(event.description)}
+						<div className="outerEvent" key={index} id={index}
+							onDoubleClick={handleDoubleClick(this)}
 							onMouseMove={handleBorders()}
 							onMouseLeave={handleMouseLeave()}
-							onDragEnd={dragHandler(this)}
+
+							// onMouseDown={dragDown()}
+							// onMouseUp={dragUp(this)}
 							style={{
 								top: `calc(${event.startDate.getHours()} / 24 * 100% + ${event.startDate.getMinutes()} / 1440 * 100% - 3px)`,
 								left: `calc((${getNormalizedDay(event.startDate)} - 1) / 7 * 100%)`,
@@ -87,7 +89,22 @@ class CalView extends React.Component {
 								+ ${event.endDate.getMinutes() - event.startDate.getMinutes()} / 1440 * 100% + 6px)`
 							}}>
 							<div className='innerEvent'>
-								{event.description}
+								<input className='eventName' defaultValue={event.description} id={index} autoComplete='off'
+									onKeyDown={
+										(e) => {
+											if (e.code == "Enter") {
+												//console.log(e.currentTarget.value)
+												e.currentTarget.blur()
+												this.cal.events[e.currentTarget.id].description = e.currentTarget.value
+											}
+											else if (e.code == "Escape") {
+												e.currentTarget.value = this.cal.events[e.currentTarget.id].description
+												e.currentTarget.blur()
+											}
+										}
+									}
+									onBlur={(e) => this.cal.events[e.currentTarget.id].description = e.currentTarget.value }
+									  />
 							</div>
 						</div>
 					)

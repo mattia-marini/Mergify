@@ -4,7 +4,8 @@ import * as Utils from "../../utils/Misc.js"
 let prevClickX = -1;
 let prevClickY = -1;
 
-let borderDrag = 0;
+let draggedEvent = null;
+
 
 function getComponentCoordinates(e, component) {
 	const bounds = component.getBoundingClientRect()
@@ -23,15 +24,16 @@ export const mouseDown = (component) => {
 
 export const mouseMove = (component) => {
 	return (e) => {
-		if (prevClickX == -1 || prevClickY == -1)
-			return;
-		if (e.buttons == 1) {
+		if (prevClickX != -1 && prevClickY != -1 && e.buttons == 1) {
 			const canvas = component.topLayerRef.current;
 			const context = canvas.getContext("2d");
 			context.setLineDash([10, 10]);
 			context.clearRect(0, 0, canvas.width, canvas.height);
 			const [currX, currY] = getComponentCoordinates(e, canvas)
 			context.strokeRect(prevClickX, prevClickY, currX - prevClickX, currY - prevClickY);
+		}
+		else if (draggedEvent != null) { 
+			//component.cal.events[]
 		}
 	}
 }
@@ -51,7 +53,9 @@ export const mouseUp = (component) => {
 		const [currX, currY] = getComponentCoordinates(e, component.topLayerRef.current)
 
 		if (currX > component.eventLPadding && (currX < width + component.eventLPadding) &&
-			(Math.floor((currX - component.eventLPadding) / colWidth) === Math.floor((prevClickX - component.eventLPadding) / colWidth))) {
+			(Math.floor((currX - component.eventLPadding) / colWidth) === Math.floor((prevClickX - component.eventLPadding) / colWidth)) &&
+			Math.abs(prevClickY - currY) > height / 70
+		) {
 
 			const [minX, minY, , maxY] = Utils.normalizeRect(prevClickX, currX, prevClickY, currY);
 
@@ -86,7 +90,13 @@ export const mouseUp = (component) => {
 
 export const dragHandler = (component) => {
 	return (event) => {
-		console.log(component.cal[event.target.key])
+		console.log(`${component.cal.events[event.currentTarget.id]} drag`)
+	}
+}
+
+export const handleDoubleClick = (component) => { 
+	return (event) => {
+		event.currentTarget.children[0].children[0].focus()
 	}
 }
 
