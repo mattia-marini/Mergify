@@ -1,6 +1,6 @@
 import React from 'react';
 import "./CalView.css"
-import { mouseUp, mouseDown, mouseMove, dragHandler, handleBorders, handleMouseLeave, handleDoubleClick} from "../CalView/SelectHandlers.js";
+import { mouseUp, mouseDown, mouseMove, dragHandler, handleBorders, handleMouseLeave, handleDoubleClick, handleBorderDrag} from "../CalView/SelectHandlers.js";
 import Calendario from "../../model/Calendario.js";
 import { dpr } from "../../utils/Misc.js";
 import {isSameWeek, getNormalizedDay} from '../../utils/Date.js'
@@ -82,6 +82,7 @@ class CalView extends React.Component {
 
 							// onMouseDown={dragDown()}
 							// onMouseUp={dragUp(this)}
+							onMouseDown={handleBorderDrag(this)}
 							style={{
 								top: `calc(${event.startDate.getHours()} / 24 * 100% + ${event.startDate.getMinutes()} / 1440 * 100% - 3px)`,
 								left: `calc((${getNormalizedDay(event.startDate)} - 1) / 7 * 100%)`,
