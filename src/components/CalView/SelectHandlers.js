@@ -54,10 +54,24 @@ export const mouseUp = (component) => {
 			(Math.floor((currX - component.eventLPadding) / colWidth) === Math.floor((prevClickX - component.eventLPadding) / colWidth))) {
 
 			const [minX, minY, , maxY] = Utils.normalizeRect(prevClickX, currX, prevClickY, currY);
-			component.cal.addEvent(new Event(
-				Math.floor((minX - component.eventLPadding) / colWidth) + 1,
-				Math.max((minY - component.eventTPadding) / height * 10, 0),
-				Math.min((maxY - component.eventTPadding) / height * 10, 10)));
+
+			const startH = Math.max(Math.floor((minY - component.eventTPadding) / height * 24), 0)
+
+			const startM = startH == 24 ? 0 : Math.min((minY - component.eventTPadding) % (height / 24) / (height / 24) * 60, 59)
+
+			const endH = Math.min((maxY - component.eventTPadding) / height * 24, 23)
+
+			const endM = endH == 24 ? 0 : Math.min((maxY - component.eventTPadding) % (height / 24) / (height / 24) * 60, 59)
+
+				component.cal.addEvent(new Event(
+					component.props.currWeek.getFullYear(),
+					component.props.currWeek.getMonth(),
+					component.props.currWeek.getDate() + Math.floor((minX - component.eventLPadding) / colWidth),
+					startH,
+					startM,
+					endH,
+					endM
+				));
 			component.drawCal();
 			component.setState({ forceRender: true })
 
@@ -97,7 +111,7 @@ export const handleBorders = () => {
 			document.body.style.cursor = 'row-resize';
 		}
 		else {
-			event.target.style.backgroundColor = "black"
+			event.currentTarget.children[0].style.backgroundColor = "black"
 			innerDiv.border = "5px solid transparent"
 			innerDiv.borderRadius = "10px"
 			document.body.style.cursor = 'default';

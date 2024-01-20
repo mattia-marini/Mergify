@@ -17,7 +17,7 @@ export default function Calendar() {
 			<Toolbar />
 			<div className='hflex'>
 				<CalView currWeek={currWeek} changeWeek={changeWeek}></CalView>
-				<Sidebar currWeek={currWeek} changeWeek={changeWeek}/>
+				<Sidebar currWeek={currWeek} setCurrWeek={setCurrWeek} changeWeek={changeWeek} />
 			</div>
 		</div>
 	)

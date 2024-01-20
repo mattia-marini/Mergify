@@ -3,6 +3,7 @@ import "./CalView.css"
 import { mouseUp, mouseDown, mouseMove, dragHandler, handleBorders, handleMouseLeave} from "../CalView/SelectHandlers.js";
 import Calendario from "../../model/Calendario.js";
 import { dpr } from "../../utils/Misc.js";
+import {isSameWeek, getNormalizedDay} from '../../utils/Date.js'
 
 // const myFont = new FontFace('Georgia', 'url(public/fonts/Georgia.ttf) format("ttf")');
 
@@ -31,14 +32,14 @@ class CalView extends React.Component {
 
 
 
-	constructor({currWeek, changeWeek}) {
-		super();
+	constructor(props) {
+		super(props);
 		this.bottomLayerRef = React.createRef();
 		this.topLayerRef = React.createRef();
 		this.divRef = React.createRef();
 		this.containerRef = React.createRef();
 		this.state = {
-			forceRender: false
+			forceRender: false, 
 		}
 		const root = document.documentElement;
 
@@ -47,11 +48,12 @@ class CalView extends React.Component {
 		this.eventTPadding = parseFloat(getComputedStyle(root).getPropertyValue('--event-t-padding'));
 		this.eventBPadding = parseFloat(getComputedStyle(root).getPropertyValue('--event-b-padding'));
 
-		this.currWeek = currWeek
-		this.changeWeek = changeWeek
+		this.currWeek = this.props.currWeek
+		this.changeWeek = this.props.changeWeek
 	}
 
 	render() {
+		console.log(this.props.currWeek);
 		return (
 			<div ref={this.containerRef} className="container" style={{}}>
 				<canvas ref={this.bottomLayerRef}
@@ -67,47 +69,11 @@ class CalView extends React.Component {
 			</div >);
 	}
 
-	// render() {
-	// 	return (
-	// 		<div style={{ position: "relative" }}>
-	// 			<canvas ref={this.bottomLayerRef}
-	// 				style={{
-	// 					position: "absolute",
-	// 					height: "100vh",
-	// 					width: "100vw",
-	// 					boxSizing: "border-box",
-	// 					display: "block",
-	// 					background: "light-gray",
-	// 					margin: "none",
-	// 					padding: "none",
-	// 				}} >
-	// 			</canvas>
-
-	// 			<canvas ref={this.topLayerRef}
-	// 				onMouseDown={mouseDown()}
-	// 				style={{
-	// 					position: "absolute",
-	// 					height: "100vh",
-	// 					width: "100vw",
-	// 					boxSizing: "border-box",
-	// 					display: "block",
-	// 					margin: "none",
-	// 					padding: "none",
-	// 				}}
-	// 			>
-	// 			</canvas>
-	// 			{this.renderEvents()}
-	// 		</div >);
-	// }
-
 
 	renderEvents() {
 		return (
-
 			this.cal.events.map((event, index) => {
-				if (event.startDate.getFullYear() == this.currWeek.getFullYear()
-					&& event.startDate.getMonth() == this.currWeek.getMonth()
-					&& (event.startDate.getDate() < this.currWeek.getDate() + 7 && event.startDate.getDate() >= this.currWeek.getDate())) {
+				if (isSameWeek(event.startDate, this.props.currWeek)) {
 					return (
 						<div className="outerEvent" key={index}
 							onClick={() => console.log(event.description)}
@@ -115,9 +81,10 @@ class CalView extends React.Component {
 							onMouseLeave={handleMouseLeave()}
 							onDragEnd={dragHandler(this)}
 							style={{
-								top: `calc(${event.startDate.getHours()} / 24 * 100% - 3px)`,
-								left: `calc((${event.startDate.getDay()} - 1) / 7 * 100%)`,
-								height: `calc(${event.endDate.getHours()} / 24 * 100% - ${event.startDate.getHours()} / 24 * 100% + 6px)`
+								top: `calc(${event.startDate.getHours()} / 24 * 100% + ${event.startDate.getMinutes()} / 1440 * 100% - 3px)`,
+								left: `calc((${getNormalizedDay(event.startDate)} - 1) / 7 * 100%)`,
+								height: `calc(${event.endDate.getHours() - event.startDate.getHours()} / 24 * 100% 
+								+ ${event.endDate.getMinutes() - event.startDate.getMinutes()} / 1440 * 100% + 6px)`
 							}}>
 							<div className='innerEvent'>
 								{event.description}

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react'
+import { getMonthDays, firstOfTheMonth, getNormalizedDay, isSameDay, nextWeek, prevMonth, nextMonth } from '../../utils/Date'
 import "./Sidebar.css"
 import { getMonth } from 'date-fns'
 
@@ -19,32 +20,18 @@ const months = {
 		11: "Dicembre",
 	}
 }
-export default function Sidebar({ currWeek }) {
+export default function Sidebar({ currWeek, setCurrWeek }) {
 
-	const [month, setMonth] = useState(new Date(currWeek))
 
-	const gridRef = useRef()
-	const gridHover = useRef()
-	const weekOverlay = useRef()
 
-	const getMonthDays = (date, offset) => {
-		return (new Date(date.getFullYear(), date.getMonth() + 1 + offset, 0)).getDate()
-	}
-	const nextMonth = (date) => {
-		return new Date(date.getFullYear(), date.getMonth() + 1, date.getDate(), 0, 0, 0, 0)
-	}
-	const prevMonth = (date) => {
-		return new Date(date.getFullYear(), date.getMonth() - 1, date.getDate(), 0, 0, 0, 0)
-	}
+
 	const computeDays = () => {
 		const tmpDate = new Date(month)
 		tmpDate.setDate(1);
-		//console.log(getMonthDays(date, 0))
 		const today = new Date()
 
 		const rv = []
 		let key = 0
-		//console.log(`DATE ${date.getDay()}`)
 		let dayOfTheWeek = tmpDate.getDay()
 		dayOfTheWeek = dayOfTheWeek === 0 ? 7 : dayOfTheWeek
 
@@ -83,95 +70,105 @@ export default function Sidebar({ currWeek }) {
 		return rv
 	}
 
-	useEffect(() => {
-		// console.log(gridRef.current.children.length)
-		//console.log(currWeek.getDate())
+	const [month, setMonth] = useState(firstOfTheMonth((currWeek)))
+
+	const gridRef = useRef()
+	const gridHover = useRef()
+	const weekOverlay = useRef()
+	const sidebar = useRef()
+	const nRows = Math.ceil((getMonthDays(month, 0) + (month.getDay() == 0 ? 7 : month.getDay() - 1)) / 7)
+	const firstDisplayedDay = (() => {
+		const rv = new Date(month)
+		rv.setDate(rv.getDate() - getNormalizedDay(rv) + 1)
+		return rv
+	})()
+
+	const computeOverlay = () => {
 		weekOverlay.current.style.display = "none"
-		const rows = window.getComputedStyle(gridRef.current, null).getPropertyValue("grid-template-rows")
-		console.log(rows.substring(0, 4))
+		const rowsString = window.getComputedStyle(gridRef.current, null).getPropertyValue("grid-template-rows")
+		const rows = rowsString.split(" ").map(value => parseInt(value, 10));
 
 
-		gridHover.current.style.top = rows.substring(0, 4)
-		gridHover.current.style.gridTemplateRows = rows.substring(4)
+		gridHover.current.style.top = `${rows[0]}px`
+		gridHover.current.style.gridTemplateRows = rowsString.substring(4)
 
-		for (let i = 7; i < gridRef.current.children.length; i += 7) {
-			// console.log(gridRef.current.children[i])
-
-
-			const element = gridRef.current.children[i]
-			if (element.textContent == currWeek.getDate()) {
-				if ((element.className == "blackDays" && currWeek.getMonth() == month.getMonth())
-					|| (element.className == "grayDays" && currWeek.getMonth() == month.getMonth() - 1)) {
-
-					const gridElementBox = element.getBoundingClientRect()
-
-					weekOverlay.current.style.top = `${gridElementBox.y - gridRef.current.getBoundingClientRect().y - 10}px`
-					weekOverlay.current.style.height = `${gridElementBox.height + 20}px`
-
-					weekOverlay.current.style.display = "block"
-					// console.log(element.getBoundingClientRect())
-
-					// weekOverlay.current.style.top = 
-					console.log(element)
+		let tmpDate = new Date(firstDisplayedDay)
+		for (let i = 1; i <= nRows; i++) {
+			if (isSameDay(currWeek, tmpDate)) {
+				// console.log(`match ${tmpDate}`)
+				// console.log(rows)
+				let top = 0;
+				for (let j = 0; j < i; j++) {
+					top += rows[j]
 				}
+				// console.log(top)
+				weekOverlay.current.style.top = `${top}px`
+				weekOverlay.current.style.height = `${rows[i]}px`
+				weekOverlay.current.style.display = "block"
+				break
 			}
+			tmpDate.setDate(tmpDate.getDate() + 7)
 		}
-
-		// gridRef.current.children.forEach(element => {
-		// 	console.log(element)
-		// });
-	}, [currWeek, month])
-
-	const computeHighlight = () => {
-		// console.log(gridRef.current)
-		// gridRef.current.children.forEach(element => {
-		// 	console.log(element)
-		// });
-		return 0;
 	}
 
+	useEffect(() => {
+		computeOverlay()
+	}, [currWeek, month])
+
+	const calGridJSX = (
+		<><div id='calGrid' ref={gridRef}>
+			<h3 className='gridItem'>M</h3>
+			<h3 className='gridItem'>T</h3>
+			<h3 className='gridItem'>W</h3>
+			<h3 className='gridItem'>T</h3>
+			<h3 className='gridItem'>F</h3>
+			<h3 className='gridItem'>S</h3>
+			<h3 className='gridItem'>S</h3>
+			{computeDays()}
+		</div></>
+	)
+
+	const gridHoverJSX = (() => {
+		month.setDate(1)
+		const rv = []
+
+		let tmpDate = new Date(firstDisplayedDay)
+		for (let i = 0; i < nRows; i++) {
+			const clojureDate = new Date(tmpDate)
+			rv.push(<div className='gridHoverSegment'
+				key={`gridHoverSegment${i}`}
+				onClick={() => {
+					setCurrWeek(clojureDate)
+				}}
+			></div>)
+			tmpDate = nextWeek(tmpDate)
+		}
+		return (
+			<div ref={gridHover} id="gridHover" >
+				{rv}
+			</div>
+		)
+	})()
+
 	return (
-		<div className='sidebar' >
+		<div className='sidebar' ref={sidebar}>
 			<div id='date'>
-				<h1 style={{ margin: "0" }}>{months.ita[month.getMonth()]}</h1>
-				<h3 style={{ margin: "0", color: "var(--mflightgray)", padding: "0 0 0 20px" }}>{month.getFullYear()}</h3>
+				<h1 style={{ margin: "0" }}>
+					{months.ita[month.getMonth()]}
+				</h1>
+				<h3 style={{ margin: "0", color: "var(--mflightgray)", padding: "0 0 0 20px" }}>
+					{month.getFullYear()}
+				</h3>
 			</div>
 			<div style={{ alignSelf: "flex-end", margin: "10px 0 10px 0" }}>
 				<button id='prev' onClick={() => { setMonth(prevMonth(month)) }}>&lt;</button>
 				<button id='next' onClick={() => { setMonth(nextMonth(month)) }}>&gt;</button>
 			</div>
-			<div style={{
-				width: "100%",
-				position: "relative"
-			}}>
-				<div id='calGrid' ref={gridRef}>
-					<h3 className='gridItem'>M</h3>
-					<h3 className='gridItem'>T</h3>
-					<h3 className='gridItem'>W</h3>
-					<h3 className='gridItem'>T</h3>
-					<h3 className='gridItem'>F</h3>
-					<h3 className='gridItem'>S</h3>
-					<h3 className='gridItem'>S</h3>
-					{computeDays()}
-				</div>
-				<div ref={gridHover}
-				id="gridHover"
-				>
-					{
-						(() => {
-							month.setDate(1)
-							const nRows = Math.ceil((getMonthDays(month, 0) + (month.getDay() == 0 ? 7 : month.getDay() - 1)) / 7)
-							const rv = []
-							for (let i = 0; i < nRows; i++) {
-								rv.push(<div className='gridHoverSegment' key={`gridHoverSegment${i}`}></div>)
-							}
-							return rv
-						})()
-					}
-				</div>
+			<div style={{ width: "100%", position: "relative" }}>
+				{calGridJSX}
+				{gridHoverJSX}
 				<div ref={weekOverlay}
 					id='weekHighlight'>
-					{/* <div id='weekHighlight'></div> */}
 				</div>
 			</div>
 			<div id='bottomButtons'>

@@ -10,7 +10,7 @@ class Calendario {
 		new Event(2023, 11, 2, 4, 0, 5, 0, "Compleanno"),
 		new Event(2023, 11, 5, 8, 0, 10, 0, "Boh"),
 		new Event(2023, 11, 6, 5, 0, 10, 0, "2"),
-		new Event(2023, 11, 7, 2, 0, 8, 0, "desc"),
+		new Event(2023, 11, 7, 2, 30, 8, 30, "desc"),
 	];
 
 	// printInCanvas(canvas) {
