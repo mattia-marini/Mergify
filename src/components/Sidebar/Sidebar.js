@@ -72,6 +72,7 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
 	}
 
 	const [month, setMonth] = useState(firstOfTheMonth((currWeek)))
+	const [popup, setPopup] = useState(false)
 	const fileIn = useRef()
 
 	const gridRef = useRef()
@@ -155,7 +156,7 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
 	const handleFileUpload = (e) => {
 
 		const callback = (name, events) => {
-			cal.addCalendar("Prova", events)
+			cal.addCalendar(name, events)
 			calViewRef.current.forceUpdate()
 		}
 
@@ -187,8 +188,50 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
 			<div id='bottomButtons'>
 				<button className='whiteBlack' onClick={() => { setCurrWeek(getMonday(new Date())); setMonth(firstOfTheMonth(new Date())) }}>Today</button>
 				<input type="file" accept=".ics" style={{ display: "none" }} onChange={handleFileUpload} ref={fileIn} />
-				<button className='blackWhite' onClick={()=>fileIn.current.click()} >Upload calendar</button>
-				<button className='blackWhite'>Delete calendar</button>
+				<button className='blackWhite' onClick={() => fileIn.current.click()} >Upload calendar</button>
+				{popup == true ? <div
+					onClick={(e) => { if (e.target == e.currentTarget) setPopup(false)}}
+					style={{
+						width: "100vw",
+						height: "100vh",
+						position: "absolute",
+						backgroundColor: "rgba(0,0,0,0.5)",
+						display: 'flex',
+						top: 0,
+						left: 0,
+						zIndex: 3,
+						alignItems: "center",
+						justifyContent: "center",
+					}}
+				>
+					<div
+						style={{
+							display: "flex",
+							flexDirection: "column",
+							gap: 10,
+							overflow: "auto",
+							width: "40vw",
+							height: "20vh",
+							borderRadius: "7px",
+							padding: 20,
+							boxSizing: 'border-box',
+							backgroundColor: "var(--mfalmostwhite)",
+							opacity: 1,
+							zIndex: 3
+						}}
+					>
+						{(() => {
+							const rv = []
+							Object.entries(cal.events).forEach(([name, values]) => {
+								console.log(name)
+								rv.push(<div >{name == "addedManually" ? "Drawn events" : name.replace(/\.[^.]+$/, '')}</div>)
+							})
+							return rv
+						})()
+						}
+					</div>
+				</div> : <></>}
+				<button className='blackWhite' onClick={() => setPopup(!popup)} style={{ zIndex: 3 }}>Delete calendar</button>
 			</div>
 		</div>
 	)
