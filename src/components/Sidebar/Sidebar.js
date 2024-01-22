@@ -21,7 +21,7 @@ const months = {
 		11: "Dicembre",
 	}
 }
-export default function Sidebar({ currWeek, setCurrWeek }) {
+export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef }) {
 
 
 
@@ -72,6 +72,7 @@ export default function Sidebar({ currWeek, setCurrWeek }) {
 	}
 
 	const [month, setMonth] = useState(firstOfTheMonth((currWeek)))
+	const fileIn = useRef()
 
 	const gridRef = useRef()
 	const gridHover = useRef()
@@ -153,7 +154,12 @@ export default function Sidebar({ currWeek, setCurrWeek }) {
 
 	const handleFileUpload = (e) => {
 
-		parseICal(e.target.files[0])
+		const callback = (name, events) => {
+			cal.addCalendar("Prova", events)
+			calViewRef.current.forceUpdate()
+		}
+
+		parseICal(e.target.files[0], callback)
 
 	}
 
@@ -179,9 +185,10 @@ export default function Sidebar({ currWeek, setCurrWeek }) {
 				</div>
 			</div>
 			<div id='bottomButtons'>
-				<button className='whiteBlack' onClick={() => setCurrWeek(getMonday(new Date()))}>Today</button>
-				<input type="file" accept=".ics" className='calIn' onChange={handleFileUpload} />
-				<button className='blackWhite' style={{ width: "100%" }}>Delete calendar</button>
+				<button className='whiteBlack' onClick={() => { setCurrWeek(getMonday(new Date())); setMonth(firstOfTheMonth(new Date())) }}>Today</button>
+				<input type="file" accept=".ics" style={{ display: "none" }} onChange={handleFileUpload} ref={fileIn} />
+				<button className='blackWhite' onClick={()=>fileIn.current.click()} >Upload calendar</button>
+				<button className='blackWhite'>Delete calendar</button>
 			</div>
 		</div>
 	)

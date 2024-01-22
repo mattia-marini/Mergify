@@ -16,9 +16,9 @@ const getTimeFromCoordinate = (component, coordinate) => {
 
 	let minute = -1
 
-	if (hour == 23) 
-		minute = Math.min((coordinate - (component.eventTPadding + height/24 * 23)) / (height / 24) * 60, 59)
-	else 
+	if (hour == 23)
+		minute = Math.min((coordinate - (component.eventTPadding + height / 24 * 23)) / (height / 24) * 60, 59)
+	else
 		minute = Math.min(Math.max((coordinate - component.eventTPadding), 0) % (height / 24) / (height / 24) * 60, 59)
 
 	return [hour, minute]
@@ -71,13 +71,13 @@ export const mouseMove = (component) => {
 		else if (draggedEvent != null) {
 			//component.cal.events[draggedEvent.id] = 
 			//console.log("muovo")
-			const calEvent = component.cal.events[draggedEvent.id]
+			const calEvent = component.cal.events[draggedEvent.dataset.calendar][draggedEvent.id]
 			const [hour, minute] = getTimeFromCoordinate(component, currY)
 			if (draggedBorder == 1) {
 				calEvent.startDate.setHours(hour)
 				calEvent.startDate.setMinutes(minute)
 			}
-			else { 
+			else {
 				calEvent.endDate.setHours(hour)
 				calEvent.endDate.setMinutes(minute)
 			}
@@ -144,11 +144,6 @@ export const mouseUp = (component) => {
 	}
 }
 
-export const dragHandler = (component) => {
-	return (event) => {
-		console.log(`${component.cal.events[event.currentTarget.id]} drag`)
-	}
-}
 
 export const handleDoubleClick = (component) => {
 	return (event) => {
@@ -188,22 +183,21 @@ export const handleBorders = () => {
 		const eventBox = event.currentTarget.getBoundingClientRect()
 
 		const innerDiv = event.currentTarget.children[0].style
-		if (event.clientY <= eventBox.y + borderThickness) {
-			innerDiv.borderTop = "5px solid black"
-			innerDiv.borderRadius = "0 0 10px 10px"
-			if (draggedEvent == null) 
+		if (draggedEvent != event.currentTarget) {
+
+			if (event.clientY <= eventBox.y + borderThickness) {
+				innerDiv.borderTop = "5px solid black"
+				innerDiv.borderRadius = "0 0 10px 10px"
 				innerDiv.backgroundColor = "var(--mfdarkgray)"
-			document.body.style.cursor = 'row-resize';
-		}
-		else if (event.clientY >= eventBox.y + eventBox.height - borderThickness) {
-			innerDiv.borderBottom = "5px solid black"
-			innerDiv.borderRadius = "10px 10px 0 0"
-			if (draggedEvent == null) 
+				document.body.style.cursor = 'row-resize';
+			}
+			else if (event.clientY >= eventBox.y + eventBox.height - borderThickness) {
+				innerDiv.borderBottom = "5px solid black"
+				innerDiv.borderRadius = "10px 10px 0 0"
 				innerDiv.backgroundColor = "var(--mfdarkgray)"
-			document.body.style.cursor = 'row-resize';
-		}
-		else {
-			if (draggedEvent == null) {
+				document.body.style.cursor = 'row-resize';
+			}
+			else {
 				event.currentTarget.children[0].style.backgroundColor = "black"
 				document.body.style.cursor = 'default';
 				innerDiv.border = "5px solid transparent"
@@ -216,7 +210,7 @@ export const handleMouseLeave = () => {
 	return (event) => {
 		const innerDiv = event.currentTarget.children[0].style
 		//console.log("mouse left")
-		if (draggedEvent == null) {
+		if (draggedEvent != event.currentTarget) {
 			document.body.style.cursor = 'default'
 			innerDiv.backgroundColor = "var(--mfdarkgray)"
 			innerDiv.border = "5px solid transparent"

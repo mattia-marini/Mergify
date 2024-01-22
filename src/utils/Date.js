@@ -43,3 +43,7 @@ export const isSameWeek = (date1, date2) => {
 
 	return date2 >= monday && date2 < nextMonday
 }
+
+export const differenceInDays = (date1, date2) => {
+	return Math.floor((Math.abs(date1 - date2)) / (1000 * 60 * 60 * 24));
+}

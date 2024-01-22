@@ -2,16 +2,18 @@ import Event from "./Event"
 import { dpr } from "../utils/Misc.js"
 
 class Calendario {
-	events = [
-		new Event(2023, 11, 1, 0, 0, 1, 0, "Evento 1"),
-		new Event(2023, 11, 1, 2, 0, 3, 0, "Evento 1"),
-		new Event(2023, 11, 1, 4, 0, 7, 0, "Evento 1"),
-		new Event(2023, 11, 1, 9, 0, 10, 0, "Riunione"),
-		new Event(2023, 11, 2, 4, 0, 5, 0, "Compleanno"),
-		new Event(2023, 11, 5, 8, 0, 10, 0, "Boh"),
-		new Event(2023, 11, 6, 5, 0, 10, 0, "2"),
-		new Event(2023, 11, 7, 2, 30, 8, 30, "desc"),
-	];
+	events = {
+		addedManually: [
+			new Event(2023, 11, 1, 0, 0, 1, 0, "Evento 1"),
+			new Event(2023, 11, 1, 2, 0, 3, 0, "Evento 1"),
+			new Event(2023, 11, 1, 4, 0, 7, 0, "Evento 1"),
+			new Event(2023, 11, 1, 9, 0, 10, 0, "Riunione"),
+			new Event(2023, 11, 2, 4, 0, 5, 0, "Compleanno"),
+			new Event(2023, 11, 5, 8, 0, 10, 0, "Boh"),
+			new Event(2023, 11, 6, 5, 0, 10, 0, "2"),
+			new Event(2023, 11, 7, 2, 30, 8, 30, "desc"),
+		]
+	};
 
 	// printInCanvas(canvas) {
 
@@ -26,9 +28,34 @@ class Calendario {
 	// }
 
 
-	addEvent(event) {
-		this.events.push(event)
+	addEvent(event, calendar) {
+		if (arguments.length == 1)
+			this.events.addedManually.push(event)
+		else
+			this.events[calendar].push(event)
+
 	}
+
+	addCalendar(calendar, events) {
+
+		if (events[calendar] != null) {
+			const d = {}
+			events.forEach(e => {
+				d[e] = true
+			})
+			events[calendar].forEach(e => {
+				if (!d[e])
+					d[e] = true
+			})
+
+			const v = []
+			Object.entries(d).forEach(([key, value]) => { v.push(key) })
+			events[calendar] = v
+		}
+
+		this.events[calendar] = events
+	}
+
 }
 
 export default Calendario;

@@ -1,7 +1,8 @@
 import ICAL from 'ical.js';
 import MFEvent from "../model/Event"
+import { splitEvent } from "../model/Event"
 
-export function parseICal(icsFile) {
+export function parseICal(icsFile, callback) {
 
 
 	if (icsFile) {
@@ -17,23 +18,27 @@ export function parseICal(icsFile) {
 			const vevents = comp.getAllSubcomponents("vevent");
 
 			// Extract events
-			const events = vevents.map(vevent => {
+			const events = []
+			vevents.forEach(vevent => {
 				const startDate = vevent.getFirstPropertyValue('dtstart');
 				const endDate = vevent.getFirstPropertyValue('dtend');
 				const desc = vevent.getFirstPropertyValue('summary');
 
-				console.log(desc)
-
-				return new MFEvent(startDate.toJSDate(), endDate.toJSDate(), desc)
+				const event = new MFEvent(startDate.toJSDate(), endDate.toJSDate(), desc)
+				if (event.startDate.getDate() != event.endDate.getDate())
+					splitEvent(event).forEach(e => events.push(e))
+				else
+					events.push(event)
 			});
+			console.log(events)
+			// const name = comp.getFirstSubcomponent("VCALENDAR")
+			//.getFirstPropertyValue("X-WR-CALNAME")
 
-			return events;
+			callback(icsFile.name, events)
 		};
 
-		return null
 	}
-	else
-		return
+	return null
 
 	// Read the content of the ics file (assuming you have it as a string)
 

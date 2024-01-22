@@ -1,9 +1,9 @@
 import React from 'react';
 import "./CalView.css"
-import { mouseUp, mouseDown, mouseMove, dragHandler, handleBorders, handleMouseLeave, handleDoubleClick, handleBorderDrag} from "../CalView/SelectHandlers.js";
+import { mouseUp, mouseDown, mouseMove, dragHandler, handleBorders, handleMouseLeave, handleDoubleClick, handleBorderDrag } from "../CalView/SelectHandlers.js";
 import Calendario from "../../model/Calendario.js";
 import { dpr } from "../../utils/Misc.js";
-import {isSameWeek, getNormalizedDay} from '../../utils/Date.js'
+import { isSameWeek, getNormalizedDay } from '../../utils/Date.js'
 
 // const myFont = new FontFace('Georgia', 'url(public/fonts/Georgia.ttf) format("ttf")');
 
@@ -28,7 +28,6 @@ class CalView extends React.Component {
 	topLayerRef;
 	containerRef;
 	tool = Tools.Select;
-	cal = new Calendario()
 
 
 
@@ -39,7 +38,7 @@ class CalView extends React.Component {
 		this.divRef = React.createRef();
 		this.containerRef = React.createRef();
 		this.state = {
-			forceRender: false, 
+			forceRender: false,
 		}
 		const root = document.documentElement;
 
@@ -50,6 +49,9 @@ class CalView extends React.Component {
 
 		this.currWeek = this.props.currWeek
 		this.changeWeek = this.props.changeWeek
+		this.cal = this.props.cal
+
+
 	}
 
 	render() {
@@ -71,17 +73,20 @@ class CalView extends React.Component {
 
 
 	renderEvents() {
-		return (
-			this.cal.events.map((event, index) => {
+
+		const v = []
+		Object.entries(this.cal.events).forEach(([calendar, events]) => {
+			events.forEach((event, index) => {
+
+				//console.log(events)
 				if (isSameWeek(event.startDate, this.props.currWeek)) {
-					return (
-						<div className="outerEvent" key={index} id={index}
+
+					v.push(
+						<div className="outerEvent" key={index} id={index} data-calendar={calendar}
 							onDoubleClick={handleDoubleClick(this)}
 							onMouseMove={handleBorders()}
 							onMouseLeave={handleMouseLeave()}
 
-							// onMouseDown={dragDown()}
-							// onMouseUp={dragUp(this)}
 							onMouseDown={handleBorderDrag(this)}
 							style={{
 								top: `calc(${event.startDate.getHours()} / 24 * 100% + ${event.startDate.getMinutes()} / 1440 * 100% - 3px)`,
@@ -96,22 +101,28 @@ class CalView extends React.Component {
 											if (e.code == "Enter") {
 												//console.log(e.currentTarget.value)
 												e.currentTarget.blur()
-												this.cal.events[e.currentTarget.id].description = e.currentTarget.value
+												this.cal.events[calendar][e.currentTarget.id].description = e.currentTarget.value
 											}
 											else if (e.code == "Escape") {
-												e.currentTarget.value = this.cal.events[e.currentTarget.id].description
+												e.currentTarget.value = this.cal.events[calendar][e.currentTarget.id].description
 												e.currentTarget.blur()
 											}
 										}
 									}
-									onBlur={(e) => this.cal.events[e.currentTarget.id].description = e.currentTarget.value }
-									  />
+									onBlur={(e) => this.cal.events[calendar][e.currentTarget.id].description = e.currentTarget.value}
+								/>
 							</div>
 						</div>
 					)
+
 				}
 			})
-		)
+
+		})
+
+		//console.log(v)
+
+		return v
 
 	}
 
