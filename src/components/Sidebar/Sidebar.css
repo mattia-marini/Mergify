@@ -142,3 +142,8 @@ button {
 	display: flex;
 	flex-direction: column;
 }
+
+.calIn{
+	background-color: var(--mfdarkgray);
+	color: var(--mfwhitegray);
+}

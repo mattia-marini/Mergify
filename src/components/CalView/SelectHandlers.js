@@ -132,10 +132,11 @@ export const mouseUp = (component) => {
 
 		if (draggedEvent != null) {
 			document.body.style.cursor = 'default'
-			console.log("mouse UP")
-			draggedEvent.children[0].backgroundColor = "var(--mfdarkgray)"
-			draggedEvent.children[0].border = "5px solid transparent"
-			draggedEvent.children[0].borderRadius = "10px"
+			draggedEvent.children[0].style.border = "5px solid transparent"
+			draggedEvent.children[0].style.borderRadius = "10px"
+			draggedEvent.children[0].style.backgroundColor = "var(--mfdarkgray)"
+			console.log(draggedEvent.children[0])
+			console.log(draggedEvent.children[0].border, draggedEvent.children[0].borderRadius, draggedEvent.children[0].backgroundColor)
 			//component.setState({forceRender : true})
 		}
 		draggedEvent = null;
@@ -214,7 +215,7 @@ export const handleBorders = () => {
 export const handleMouseLeave = () => {
 	return (event) => {
 		const innerDiv = event.currentTarget.children[0].style
-		console.log("mouse left")
+		//console.log("mouse left")
 		if (draggedEvent == null) {
 			document.body.style.cursor = 'default'
 			innerDiv.backgroundColor = "var(--mfdarkgray)"

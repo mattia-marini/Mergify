@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react'
-import { getMonthDays, firstOfTheMonth, getNormalizedDay, isSameDay, nextWeek, prevMonth, nextMonth } from '../../utils/Date'
+import { getMonday, getMonthDays, firstOfTheMonth, getNormalizedDay, isSameDay, nextWeek, prevMonth, nextMonth } from '../../utils/Date'
 import "./Sidebar.css"
+import { parseICal } from "../../model/Parsers"
 import { getMonth } from 'date-fns'
 
 const months = {
@@ -150,6 +151,12 @@ export default function Sidebar({ currWeek, setCurrWeek }) {
 		)
 	})()
 
+	const handleFileUpload = (e) => {
+
+		parseICal(e.target.files[0])
+
+	}
+
 	return (
 		<div className='sidebar' ref={sidebar}>
 			<div id='date'>
@@ -172,8 +179,8 @@ export default function Sidebar({ currWeek, setCurrWeek }) {
 				</div>
 			</div>
 			<div id='bottomButtons'>
-				<button className='whiteBlack'>Today</button>
-				<button className='blackWhite' style={{ width: "100%" }}>Load calendar</button>
+				<button className='whiteBlack' onClick={() => setCurrWeek(getMonday(new Date()))}>Today</button>
+				<input type="file" accept=".ics" className='calIn' onChange={handleFileUpload} />
 				<button className='blackWhite' style={{ width: "100%" }}>Delete calendar</button>
 			</div>
 		</div>
