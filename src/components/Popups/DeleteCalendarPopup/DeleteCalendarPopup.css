@@ -1,0 +1,27 @@
+#popup{
+	display: "flex";
+	flex-direction: "column";
+	gap: 10;
+	overflow: "auto";
+	width: "40vw";
+	height: "20vh";
+	border-radius: "7px";
+	padding: 20;
+	box-sizing: 'border-box';
+	background-color: "var(--mfalmostwhite)";
+	opacity: 1;
+	z-index: 3
+}
+#nuovoid{
+	width: "100vw";
+	height: "100vh";
+	position: "absolute";
+	background-color: "rgba(0;0;0;0.5)";
+	background-color: "blue";
+	display: 'flex';
+	top: 0;
+	left: 0;
+	z-index: 3;
+	align-items: "center";
+	justify-content: "center";
+}

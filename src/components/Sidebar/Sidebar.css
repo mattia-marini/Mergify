@@ -118,24 +118,6 @@ button {
 	margin-bottom: var(--sidebar-vspacing);
 }
 
-.whiteBlack {
-	background-color: var(--mfdarkgray);
-	color: var(--mfwhitegray);
-	padding: 10px
-}
-.whiteBlack:hover {
-	background-color: var(--mflightgray);
-}
-
-.blackWhite {
-	background-color: var(--mfwhitegray);
-	color: var(--mfdarkgray);
-	width: 100%;
-	padding: 10px
-}
-.blackWhite:hover {
-	background-color: var(--mfverylightgray);
-}
 
 #bottomButtons {
 	display: flex;

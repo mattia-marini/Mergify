@@ -12,7 +12,14 @@ class Calendario {
 			new Event(2023, 11, 5, 8, 0, 10, 0, "Boh"),
 			new Event(2023, 11, 6, 5, 0, 10, 0, "2"),
 			new Event(2023, 11, 7, 2, 30, 8, 30, "desc"),
-		]
+		],
+		prova1: [],
+		prova2: [],
+		prova3: [],
+		prova4: [],
+		prova5: [],
+		prova6: [],
+		prova7: []
 	};
 
 	// printInCanvas(canvas) {
@@ -29,8 +36,11 @@ class Calendario {
 
 
 	addEvent(event, calendar) {
-		if (arguments.length == 1)
+		if (arguments.length == 1) {
+			if (!this.events.addedManually)
+				this.events.addedManually = []
 			this.events.addedManually.push(event)
+		}
 		else
 			this.events[calendar].push(event)
 
@@ -54,6 +64,12 @@ class Calendario {
 		}
 
 		this.events[calendar] = events
+	}
+
+	removeCalendar(name) {
+		if (this.events[name]) {
+			delete this.events[name]
+		}
 	}
 
 }
