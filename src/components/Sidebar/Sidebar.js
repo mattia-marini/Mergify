@@ -191,7 +191,7 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
 				<input type="file" accept=".ics" style={{ display: "none" }} onChange={handleFileUpload} ref={fileIn} />
 				{popup ? <DeleteCalendarPopup cal={cal} setPopup={setPopup} calViewRef={calViewRef} /> : null}
 				<button className='blackWhite' onClick={() => fileIn.current.click()} >Upload calendar</button>
-				<button className='blackWhite' onClick={() => setPopup(!popup)} style={{ zIndex: 3 }}>Delete calendar</button>
+				<button className='blackWhite' onClick={() => setPopup(!popup)} style={{ zIndex: 2 }}>Delete calendar</button>
 			</div>
 		</div>
 	)

@@ -1,1 +1,1 @@
-export { default} from "./UserProfilePopup"
+export { default } from "./UserProfilePopup"
