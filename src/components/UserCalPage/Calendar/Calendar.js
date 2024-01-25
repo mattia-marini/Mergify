@@ -3,7 +3,7 @@ import "./Calendar.css"
 import CalView from "../CalView"
 import Toolbar from "../Toolbar"
 import Sidebar from "../Sidebar"
-import Calendario from "../../model/Calendario"
+import Calendario from "../../../model/Calendario"
 
 export default function Calendar() {
 	const [currWeek, setCurrWeek] = useState(new Date(2023, 11, 4, 1, 0, 0, 0))

@@ -17,7 +17,7 @@ export default function CalEntry({ name, cal, calViewRef, addEntry}) {
 			<div style={{ display: "flex", flexDirection: "row" }}>
 				{hover ? <button
 					onClick={() => { addEntry(name, true) }}
-					style={{ boxSizing: "border-box", height: "50%" }}> - </button> : null}
+					style={{ boxSizing: "border-box", height: "10px" }}> - </button> : null}
 			</div>
 		</div>
 	)

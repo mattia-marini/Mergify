@@ -1,5 +1,5 @@
-import Event from "../../model/Event.js";
-import * as Utils from "../../utils/Misc.js"
+import Event from "../../../model/Event.js";
+import * as Utils from "../../../utils/Misc.js"
 
 let prevClickX = -1;
 let prevClickY = -1;

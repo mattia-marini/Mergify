@@ -1,9 +1,9 @@
 import React from 'react';
 import "./CalView.css"
-import { mouseUp, mouseDown, mouseMove, dragHandler, handleBorders, handleMouseLeave, handleDoubleClick, handleBorderDrag } from "../CalView/SelectHandlers.js";
-import Calendario from "../../model/Calendario.js";
-import { dpr } from "../../utils/Misc.js";
-import { isSameWeek, getNormalizedDay } from '../../utils/Date.js'
+import { mouseUp, mouseDown, mouseMove, dragHandler, handleBorders, handleMouseLeave, handleDoubleClick, handleBorderDrag } from "./SelectHandlers.js";
+import Calendario from "../../../model/Calendario.js";
+import { dpr } from "../../../utils/Misc.js";
+import { isSameWeek, getNormalizedDay } from '../../../utils/Date.js'
 
 // const myFont = new FontFace('Georgia', 'url(public/fonts/Georgia.ttf) format("ttf")');
 

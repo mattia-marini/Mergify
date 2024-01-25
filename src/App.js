@@ -1,5 +1,5 @@
 import './App.css';
-import Calendar from "./components/Calendar"
+import Calendar from "./components/UserCalPage/Calendar"
 import { format, isMonday } from 'date-fns'
 import { useEffect } from "react"
 

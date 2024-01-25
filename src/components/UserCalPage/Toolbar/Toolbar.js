@@ -11,7 +11,7 @@ export default function Toolbar({ ...props }) {
 				<button id='myCal'> My cal </button>
 				<button id='myGroups'> My groups </button>
 			</div>
-			<div id='tools' style={{ display: "flex",flexDirection:"column", justifyContent: "center", alignContent: "center" }}>
+			<div id='tools' style={{ display: "flex", flexDirection:"column", justifyContent: "center", alignContent: "center" }}>
 				<div style={{textAlign:"center"}}>
 					Mio calendario
 				</div>
@@ -19,12 +19,16 @@ export default function Toolbar({ ...props }) {
 			<div id='user'>
 				<button
 					onClick={() => setPopup(true)}
-					id='pip'
+					className='blackWhite'
+					style={{width:"50%", height:"100%", backgroundColor:"var(--mfalmostwhite)"}}
 				>
-					M
+					Mario Rossi
 				</button>
-				{/* {popup ? <AccountDetailsPopup setPopup={setPopup} /> : null} */}
-				<div>Mario Rossi</div>
+				{popup ? <AccountDetailsPopup setPopup={setPopup} /> : null}
+				<button
+					className='whiteBlack'
+					style={{width:"50%", height:"100%", borderRadius:"0 10px 10px 0"}}
+				>Log out</button>
 			</div>
 		</div>
 	)
