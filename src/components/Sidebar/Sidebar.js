@@ -38,33 +38,33 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
 		dayOfTheWeek = dayOfTheWeek === 0 ? 7 : dayOfTheWeek
 
 		for (let i = dayOfTheWeek - 1; i > 0; i--) {
-			rv.push(<h6 className='grayDays' key={key}>{getMonthDays(tmpDate, -1) - i + 1}</h6>)
+			rv.push(<div className='grayDays' key={key}>{getMonthDays(tmpDate, -1) - i + 1}</div>)
 			key++;
 		}
 
 		if (tmpDate.getMonth() == today.getMonth()) {
 			for (let i = 1; i < today.getDate(); i++) {
-				rv.push(<h6 className='blackDays' key={key}>{i}</h6>)
+				rv.push(<div className='blackDays' key={key}>{i}</div>)
 				key++;
 			}
-			rv.push(<h6 style={{ color: "var(--mfalmostwhite)", backgroundColor: "var(--mfgray)", padding: "5px", borderRadius: "7px" }}
-				className='blackDays' key={key}>{today.getDate()}</h6>)
+			rv.push(<div style={{ color: "var(--mfalmostwhite)", backgroundColor: "var(--mfgray)", padding: "5px", borderRadius: "7px" }}
+				className='blackDays' key={key}>{today.getDate()}</div>)
 			key++
 			for (let i = today.getDate() + 1; i <= getMonthDays(tmpDate, 0); i++) {
-				rv.push(<h6 className='blackDays' key={key}>{i}</h6>)
+				rv.push(<div className='blackDays' key={key}>{i}</div>)
 				key++;
 			}
 		}
 		else {
 			for (let i = 1; i <= getMonthDays(tmpDate, 0); i++) {
-				rv.push(<h6 className='blackDays' key={key}>{i}</h6>)
+				rv.push(<div className='blackDays' key={key}>{i}</div>)
 				key++;
 			}
 		}
 		let remainingDays = 7 - key % 7
 		remainingDays = remainingDays == 7 ? 0 : remainingDays
 		for (let i = 1; i <= remainingDays; i++) {
-			rv.push(<h6 className='grayDays' key={key}>{i}</h6>)
+			rv.push(<div className='grayDays' key={key}>{i}</div>)
 			key++;
 		}
 
@@ -121,13 +121,13 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
 
 	const calGridJSX = (
 		<><div id='calGrid' ref={gridRef}>
-			<h3 className='gridItem'>M</h3>
-			<h3 className='gridItem'>T</h3>
-			<h3 className='gridItem'>W</h3>
-			<h3 className='gridItem'>T</h3>
-			<h3 className='gridItem'>F</h3>
-			<h3 className='gridItem'>S</h3>
-			<h3 className='gridItem'>S</h3>
+			<div className='gridItem'>M</div>
+			<div className='gridItem'>T</div>
+			<div className='gridItem'>W</div>
+			<div className='gridItem'>T</div>
+			<div className='gridItem'>F</div>
+			<div className='gridItem'>S</div>
+			<div className='gridItem'>S</div>
 			{computeDays()}
 		</div></>
 	)
@@ -168,14 +168,14 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
 	return (
 		<div className='sidebar' ref={sidebar}>
 			<div id='date'>
-				<h1 style={{ margin: "0" }}>
+				<div style={{ margin: "0", color:"var(--mfdarkgray)", fontSize:"25px" }}>
 					{months.ita[month.getMonth()]}
-				</h1>
-				<h3 style={{ margin: "0", color: "var(--mflightgray)", padding: "0 0 0 20px" }}>
+				</div>
+				<div style={{ margin: "0", color: "var(--mflightgray)", padding: "0 0 0 20px" }}>
 					{month.getFullYear()}
-				</h3>
+				</div>
 			</div>
-			<div style={{ alignSelf: "flex-end", margin: "10px 0 10px 0" }}>
+			<div style={{ padding:"20px 20px 0 20px", width:"100%", alignSelf: "center", margin: "10px 0 10px 0" }}>
 				<button id='prev' onClick={() => { setMonth(prevMonth(month)) }}>&lt;</button>
 				<button id='next' onClick={() => { setMonth(nextMonth(month)) }}>&gt;</button>
 			</div>

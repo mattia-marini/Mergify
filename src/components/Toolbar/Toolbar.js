@@ -11,7 +11,10 @@ export default function Toolbar({ ...props }) {
 				<button id='myCal'> My cal </button>
 				<button id='myGroups'> My groups </button>
 			</div>
-			<div id='tools'>
+			<div id='tools' style={{ display: "flex",flexDirection:"column", justifyContent: "center", alignContent: "center" }}>
+				<div style={{textAlign:"center"}}>
+					Mio calendario
+				</div>
 			</div>
 			<div id='user'>
 				<button
@@ -20,8 +23,8 @@ export default function Toolbar({ ...props }) {
 				>
 					M
 				</button>
-				{ popup ?  <AccountDetailsPopup setPopup={setPopup} /> : null }
-				<h2>Mario Rossi</h2>
+				{popup ? <AccountDetailsPopup setPopup={setPopup} /> : null}
+				<div>Mario Rossi</div>
 			</div>
 		</div>
 	)
