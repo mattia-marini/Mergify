@@ -12,7 +12,3 @@
 	background-color: var(--mfwhitegray);
 	font-family: "ShoikaLight";
 }
-
-.calView {
-	flex-grow: 1;
-}

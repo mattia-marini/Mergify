@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import "./Calendar.css"
+import Styles from "./Calendar.module.css"
 import CalView from "../CalView"
 import Toolbar from "../Toolbar"
 import Sidebar from "../Sidebar"
@@ -19,9 +19,9 @@ export default function Calendar() {
 	}
 
 	return (
-		<div className='vflex'>
+		<div className={Styles.vflex}>
 			<Toolbar />
-			<div className='hflex'>
+			<div className={Styles.hflex}>
 				<CalView currWeek={currWeek} changeWeek={changeWeek} cal={cal} ref={calViewRef}></CalView>
 				<Sidebar currWeek={currWeek} setCurrWeek={setCurrWeek} cal={cal} setCal={setCal} calViewRef={calViewRef} />
 			</div>

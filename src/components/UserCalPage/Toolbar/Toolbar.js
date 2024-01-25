@@ -8,8 +8,8 @@ export default function Toolbar({ ...props }) {
 	return (
 		<div id='toolbar'>
 			<div id='navigation'>
-				<button id='myCal'> My cal </button>
-				<button id='myGroups'> My groups </button>
+				<button className='blackButton' style={{borderRadius:0}}> My cal </button>
+				<button className='whiteButton' style={{borderRadius:"0 10px 10px 0"}}> My groups </button>
 			</div>
 			<div id='tools' style={{ display: "flex", flexDirection:"column", justifyContent: "center", alignContent: "center" }}>
 				<div style={{textAlign:"center"}}>
@@ -19,14 +19,14 @@ export default function Toolbar({ ...props }) {
 			<div id='user'>
 				<button
 					onClick={() => setPopup(true)}
-					className='blackWhite'
-					style={{width:"50%", height:"100%", backgroundColor:"var(--mfalmostwhite)"}}
+					className='whiteButton'
+					style={{width:"50%", height:"100%", borderRadius:"10px 0 0 10px"}}
 				>
 					Mario Rossi
 				</button>
 				{popup ? <AccountDetailsPopup setPopup={setPopup} /> : null}
 				<button
-					className='whiteBlack'
+					className='blackButton'
 					style={{width:"50%", height:"100%", borderRadius:"0 10px 10px 0"}}
 				>Log out</button>
 			</div>

@@ -1,0 +1,51 @@
+	.background {
+		width: 100vw;
+		height: 100vh;
+		position: absolute;
+		background-color: rgba(0, 0, 0, 0.5);
+		display: flex;
+		top: 0;
+		left: 0;
+		z-index: 4;
+		align-items: center;
+		justify-content: center
+	}
+
+
+	.externalFlex {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		width: 40vw;
+		border-radius: 7px;
+		padding: 20px;
+		box-sizing: border-box;
+		background-color: var(--mfalmostwhite);
+		overflow: auto
+	}
+
+
+	#pip {
+		color: var(--mfalmostwhite);
+		background-color: var(--mfgray);
+		border-radius: 100%;
+		height: 40px;
+		width: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: larger;
+	}
+
+
+	#pip:hover {
+		background-color: var(--mflightgray);
+	}
+
+
+	.buttons {
+		display: flex;
+		gap: 10px;
+		min-height: fit-content;
+		flex-direction: row;
+	}

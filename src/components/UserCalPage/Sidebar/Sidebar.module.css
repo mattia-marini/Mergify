@@ -23,13 +23,6 @@
 	}
 }
 
-button {
-	cursor: pointer;
-	border: none;
-	font-size: medium;
-	border-radius: 5px;
-}
-
 #next {
 	border-radius: 0 5px 5px 0;
 	background-color: var(--mfgray);

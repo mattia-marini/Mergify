@@ -1,5 +1,5 @@
 import React from 'react';
-import "./CalView.css"
+import Styles from "./CalView.module.css"
 import { mouseUp, mouseDown, mouseMove, dragHandler, handleBorders, handleMouseLeave, handleDoubleClick, handleBorderDrag } from "./SelectHandlers.js";
 import Calendario from "../../../model/Calendario.js";
 import { dpr } from "../../../utils/Misc.js";
@@ -57,15 +57,15 @@ class CalView extends React.Component {
 	render() {
 		//console.log(this.props.currWeek);
 		return (
-			<div ref={this.containerRef} className="container" style={{}}>
+			<div ref={this.containerRef} className={Styles.container} style={{}}>
 				<canvas ref={this.bottomLayerRef}
-					className='bottomLayer'
+					className={Styles.bottomLayer}
 				/>
 				<canvas ref={this.topLayerRef}
 					onMouseDown={mouseDown(this)}
-					className='topLayer'
+					className={Styles.topLayer}
 				/>
-				<div className='events'>
+				<div className={Styles.events}>
 					{this.renderEvents()}
 				</div>
 			</div >);
@@ -78,11 +78,10 @@ class CalView extends React.Component {
 		Object.entries(this.cal.events).forEach(([calendar, events]) => {
 			events.forEach((event, index) => {
 
-				//console.log(events)
 				if (isSameWeek(event.startDate, this.props.currWeek)) {
 
 					v.push(
-						<div className="outerEvent" key={index} id={index} data-calendar={calendar}
+						<div className={Styles.outerEvent} key={index} id={index} data-calendar={calendar}
 							onDoubleClick={handleDoubleClick(this)}
 							onMouseMove={handleBorders()}
 							onMouseLeave={handleMouseLeave()}
@@ -94,8 +93,8 @@ class CalView extends React.Component {
 								height: `calc(${event.endDate.getHours() - event.startDate.getHours()} / 24 * 100% 
 								+ ${event.endDate.getMinutes() - event.startDate.getMinutes()} / 1440 * 100% + 6px)`
 							}}>
-							<div className='innerEvent'>
-								<input className='eventName' defaultValue={event.description} id={index} autoComplete='off'
+							<div className={Styles.innerEvent}>
+								<input className={Styles.eventName} defaultValue={event.description} id={index} autoComplete='off'
 									onKeyDown={
 										(e) => {
 											if (e.code == "Enter") {

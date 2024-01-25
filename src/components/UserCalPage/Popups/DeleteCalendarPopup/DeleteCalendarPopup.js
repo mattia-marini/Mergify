@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import Styles from "./Styles"
+import Styles from "./DeleteCalendarPopup.module.css"
 import CalEntry from "./CalEntry"
 
 export default function DeleteCalendarPopup({ cal, setPopup, calViewRef }) {
@@ -26,14 +26,14 @@ export default function DeleteCalendarPopup({ cal, setPopup, calViewRef }) {
 	return (
 		<div
 			onClick={(e) => { if (e.target == e.currentTarget) setPopup(false) }}
-			style={Styles.background}
+			className={Styles.background}
 		>
 			<div
-				style={Styles.externalFlex} >
-				<div style={Styles.nameList}>
+				className={Styles.externalFlex} >
+				<div className={Styles.nameList}>
 					{getList()}
 				</div>
-				<div style={Styles.buttons}>
+				<div className={Styles.buttons}>
 					<button
 						onClick={() => setPopup(false)}
 						className="blackWhite" style={{ flexGrow: "1" }}>Cancel</button>
@@ -43,7 +43,7 @@ export default function DeleteCalendarPopup({ cal, setPopup, calViewRef }) {
 							calViewRef.current.forceUpdate()
 							setPopup(false)
 						}}
-						style={{ width: "100px" }} className="whiteBlack" >Ok</button>
+						className="whiteBlack" style={{ width: "100px" }}  >Ok</button>
 				</div>
 			</div>
 

@@ -1,18 +1,37 @@
-.whiteBlack {
+button {
+	cursor: pointer;
+	border: none;
+	font-size: medium;
+	border-radius: 5px;
+}
+
+.blackButton {
 	background-color: var(--mfdarkgray);
-	color: var(--mfwhitegray);
+	color: var(--mfalmostwhite);
+	width: 100%;
 	padding: 10px
 }
-.whiteBlack:hover {
+.blackButton:hover {
 	background-color: var(--mflightgray);
 }
 
-.blackWhite {
+.lightGrayButton {
 	background-color: var(--mfwhitegray);
 	color: var(--mfdarkgray);
 	width: 100%;
 	padding: 10px
 }
-.blackWhite:hover {
+.lightGrayButton:hover {
+	background-color: var(--mfverylightgray);
+}
+
+
+.whiteButton {
+	background-color: var(--mfalmostwhite);
+	color: var(--mfdarkgray);
+	width: 100%;
+	padding: 10px
+}
+.whiteButton:hover {
 	background-color: var(--mfverylightgray);
 }

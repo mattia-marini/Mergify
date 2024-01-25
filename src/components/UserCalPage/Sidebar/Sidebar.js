@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import { getMonday, getMonthDays, firstOfTheMonth, getNormalizedDay, isSameDay, nextWeek, prevMonth, nextMonth } from '../../../utils/Date'
-import "./Sidebar.css"
+import Styles from "./Sidebar.module.css"
 import { parseICal } from "../../../model/Parsers"
 import { getMonth } from 'date-fns'
 import DeleteCalendarPopup from '../Popups/DeleteCalendarPopup/DeleteCalendarPopup'
@@ -38,33 +38,33 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
 		dayOfTheWeek = dayOfTheWeek === 0 ? 7 : dayOfTheWeek
 
 		for (let i = dayOfTheWeek - 1; i > 0; i--) {
-			rv.push(<div className='grayDays' key={key}>{getMonthDays(tmpDate, -1) - i + 1}</div>)
+			rv.push(<div className={Styles.grayDays} key={key}>{getMonthDays(tmpDate, -1) - i + 1}</div>)
 			key++;
 		}
 
 		if (tmpDate.getMonth() == today.getMonth()) {
 			for (let i = 1; i < today.getDate(); i++) {
-				rv.push(<div className='blackDays' key={key}>{i}</div>)
+				rv.push(<div className={Styles.blackDays} key={key}>{i}</div>)
 				key++;
 			}
 			rv.push(<div style={{ color: "var(--mfalmostwhite)", backgroundColor: "var(--mfgray)", padding: "5px", borderRadius: "7px" }}
-				className='blackDays' key={key}>{today.getDate()}</div>)
+				className={Styles.blackDays} key={key}>{today.getDate()}</div>)
 			key++
 			for (let i = today.getDate() + 1; i <= getMonthDays(tmpDate, 0); i++) {
-				rv.push(<div className='blackDays' key={key}>{i}</div>)
+				rv.push(<div className={Styles.blackDays}  key={key}>{i}</div>)
 				key++;
 			}
 		}
 		else {
 			for (let i = 1; i <= getMonthDays(tmpDate, 0); i++) {
-				rv.push(<div className='blackDays' key={key}>{i}</div>)
+				rv.push(<div className={Styles.blackDays} key={key}>{i}</div>)
 				key++;
 			}
 		}
 		let remainingDays = 7 - key % 7
 		remainingDays = remainingDays == 7 ? 0 : remainingDays
 		for (let i = 1; i <= remainingDays; i++) {
-			rv.push(<div className='grayDays' key={key}>{i}</div>)
+			rv.push(<div className={Styles.grayDays} key={key}>{i}</div>)
 			key++;
 		}
 
@@ -99,13 +99,10 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
 		let tmpDate = new Date(firstDisplayedDay)
 		for (let i = 1; i <= nRows; i++) {
 			if (isSameDay(currWeek, tmpDate)) {
-				// console.log(`match ${tmpDate}`)
-				// console.log(rows)
 				let top = 0;
 				for (let j = 0; j < i; j++) {
 					top += rows[j]
 				}
-				// console.log(top)
 				weekOverlay.current.style.top = `${top}px`
 				weekOverlay.current.style.height = `${rows[i]}px`
 				weekOverlay.current.style.display = "block"
@@ -120,14 +117,14 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
 	}, [currWeek, month, computeOverlay])
 
 	const calGridJSX = (
-		<><div id='calGrid' ref={gridRef}>
-			<div className='gridItem'>M</div>
-			<div className='gridItem'>T</div>
-			<div className='gridItem'>W</div>
-			<div className='gridItem'>T</div>
-			<div className='gridItem'>F</div>
-			<div className='gridItem'>S</div>
-			<div className='gridItem'>S</div>
+		<><div id={Styles.calGrid} ref={gridRef}>
+			<div className={Styles.gridItem}>M</div>
+			<div className={Styles.gridItem}>T</div>
+			<div className={Styles.gridItem}>W</div>
+			<div className={Styles.gridItem}>T</div>
+			<div className={Styles.gridItem}>F</div>
+			<div className={Styles.gridItem}>S</div>
+			<div className={Styles.gridItem}>S</div>
 			{computeDays()}
 		</div></>
 	)
@@ -139,7 +136,7 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
 		let tmpDate = new Date(firstDisplayedDay)
 		for (let i = 0; i < nRows; i++) {
 			const clojureDate = new Date(tmpDate)
-			rv.push(<div className='gridHoverSegment'
+			rv.push(<div className={Styles.gridHoverSegment}
 				key={`gridHoverSegment${i}`}
 				onClick={() => {
 					setCurrWeek(clojureDate)
@@ -148,7 +145,7 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
 			tmpDate = nextWeek(tmpDate)
 		}
 		return (
-			<div ref={gridHover} id="gridHover" >
+			<div ref={gridHover} id={Styles.gridHover} >
 				{rv}
 			</div>
 		)
@@ -166,8 +163,8 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
 	}
 
 	return (
-		<div className='sidebar' ref={sidebar}>
-			<div id='date'>
+		<div className={Styles.sidebar} ref={sidebar}>
+			<div id={Styles.date}>
 				<div style={{ margin: "0", color:"var(--mfdarkgray)", fontSize:"25px" }}>
 					{months.ita[month.getMonth()]}
 				</div>
@@ -176,22 +173,22 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
 				</div>
 			</div>
 			<div style={{ padding:"20px 20px 0 20px", width:"100%", alignSelf: "center", margin: "10px 0 10px 0" }}>
-				<button id='prev' onClick={() => { setMonth(prevMonth(month)) }}>&lt;</button>
-				<button id='next' onClick={() => { setMonth(nextMonth(month)) }}>&gt;</button>
+				<button id={Styles.prev} onClick={() => { setMonth(prevMonth(month)) }}>&lt;</button>
+				<button id={Styles.next} onClick={() => { setMonth(nextMonth(month)) }}>&gt;</button>
 			</div>
 			<div style={{ width: "100%", position: "relative" }}>
 				{calGridJSX}
 				{gridHoverJSX}
 				<div ref={weekOverlay}
-					id='weekHighlight'>
+					id={Styles.weekHighlight}>
 				</div>
 			</div>
-			<div id='bottomButtons'>
-				<button className='whiteBlack' onClick={() => { setCurrWeek(getMonday(new Date())); setMonth(firstOfTheMonth(new Date())) }}>Today</button>
+			<div id={Styles.bottomButtons}>
+				<button className="blackButton" onClick={() => { setCurrWeek(getMonday(new Date())); setMonth(firstOfTheMonth(new Date())) }}>Today</button>
 				<input type="file" accept=".ics" style={{ display: "none" }} onChange={handleFileUpload} ref={fileIn} />
 				{popup ? <DeleteCalendarPopup cal={cal} setPopup={setPopup} calViewRef={calViewRef} /> : null}
-				<button className='blackWhite' onClick={() => fileIn.current.click()} >Upload calendar</button>
-				<button className='blackWhite' onClick={() => setPopup(!popup)} style={{ zIndex: 2 }}>Delete calendar</button>
+				<button className="lightGrayButton" onClick={() => fileIn.current.click()} >Upload calendar</button>
+				<button className="lightGrayButton" onClick={() => setPopup(!popup)} style={{ zIndex: 2 }}>Delete calendar</button>
 			</div>
 		</div>
 	)

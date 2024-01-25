@@ -9,8 +9,7 @@ export default function CalEntry({ name, cal, calViewRef, addEntry}) {
 		<div
 			onMouseEnter={() => setHover(true)}
 			onMouseLeave={() => setHover(false)}
-			style={{
-				display: "flex", flexDirection: "row",  justifyContent: "space-between", backgroundColor: hover ? "var(--mfwhitegray)" : "transparent", boxSizing:"border-box", padding:"10px"}}>
+			style={{ display: "flex", flexDirection: "row",  justifyContent: "space-between", backgroundColor: hover ? "var(--mfwhitegray)" : "transparent", boxSizing:"border-box", padding:"10px"}}>
 			<div>
 				{name == "addedManually" ? "Drawn events" : name.replace(/\.[^.]+$/, '')}
 			</div>
