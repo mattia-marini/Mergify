@@ -90,11 +90,11 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
 	const computeOverlay = () => {
 		weekOverlay.current.style.display = "none"
 		const rowsString = window.getComputedStyle(gridRef.current, null).getPropertyValue("grid-template-rows")
-		const rows = rowsString.split(" ").map(value => parseInt(value, 10));
+		const rows = rowsString.split(" ").map(value => parseFloat(value, 10));
 
 
 		gridHover.current.style.top = `${rows[0]}px`
-		gridHover.current.style.gridTemplateRows = rowsString.substring(4)
+		gridHover.current.style.gridTemplateRows = rows.slice(1).join("px ") + "px"
 
 		let tmpDate = new Date(firstDisplayedDay)
 		for (let i = 1; i <= nRows; i++) {
@@ -117,7 +117,7 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
 
 	useEffect(() => {
 		computeOverlay()
-	}, [currWeek, month])
+	}, [currWeek, month, computeOverlay])
 
 	const calGridJSX = (
 		<><div id='calGrid' ref={gridRef}>

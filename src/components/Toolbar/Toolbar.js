@@ -23,7 +23,7 @@ export default function Toolbar({ ...props }) {
 				>
 					M
 				</button>
-				{popup ? <AccountDetailsPopup setPopup={setPopup} /> : null}
+				{/* {popup ? <AccountDetailsPopup setPopup={setPopup} /> : null} */}
 				<div>Mario Rossi</div>
 			</div>
 		</div>
