@@ -176,7 +176,9 @@ class CalView extends React.Component {
 		const context1 = canvas1.getContext("2d");
 		const context2 = canvas2.getContext("2d");
 
-		const bounds = this.containerRef.current.getBoundingClientRect()
+		const container = this.containerRef.current
+		if (!container) return
+		const bounds = container.getBoundingClientRect()
 
 		canvas1.width = bounds.width * dpr;
 		canvas1.height = 2 * bounds.height * dpr;
@@ -194,7 +196,9 @@ class CalView extends React.Component {
 		this.drawCal();
 		const onResize = () => {
 
-			const bounds = this.containerRef.current.getBoundingClientRect()
+			const container = this.containerRef.current
+			if (!container) return
+			const bounds = container.getBoundingClientRect()
 			canvas1.width = bounds.width * dpr;
 			canvas1.height = 2 * bounds.height * dpr;
 

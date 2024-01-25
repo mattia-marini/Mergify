@@ -1,0 +1,18 @@
+#main{
+width: 100vw;
+height: 100vh;
+position: absolute;
+}
+
+#card{
+	position: absolute;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	z-index: 1;
+	height: 80vh;
+	width: 80vw;
+	top: 50%; 
+	left: 50%; 
+	transform: translate(-50%, -50%);
+}

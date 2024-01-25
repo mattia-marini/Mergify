@@ -34,9 +34,3 @@
 	right: 20%;
 	user-select: none;
  }
-
- @media (max-width: 900px){
-	#circle{
-		display: none;
-	}
-  }

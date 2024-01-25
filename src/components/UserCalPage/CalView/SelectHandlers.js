@@ -44,6 +44,8 @@ const cordinatesToTimeInterval = (component, minY, maxY) => {
 
 
 function getComponentCoordinates(e, component) {
+	if (!component)
+		return
 	const bounds = component.getBoundingClientRect()
 	return [
 		e.clientX - bounds.left,

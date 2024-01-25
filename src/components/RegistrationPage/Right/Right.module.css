@@ -15,9 +15,3 @@
 	transition: ease all 1s;
 	z-index: 1;
 }
-
-@media (max-width: 900px){
-	#right{
-	  display:none;
-	}
-}
