@@ -21,10 +21,10 @@ export default function UserProfilePopup({ setPopup }) {
 				<div className={styles.buttons}>
 					<button
 						onClick={() => setPopup(false)}
-						className="blackWhite" style={{ width: "50%" }}>Cancel</button>
+						className="lightGrayButton" style={{ width: "50%" }}>Cancel</button>
 					<button
 						onClick={() => setPopup(false)}
-						style={{ width: "100px", width: "50%" }} className="whiteBlack" >Ok</button>
+						style={{ width: "100px", width: "50%" }} className="blackButton" >Ok</button>
 				</div>
 			</div>
 

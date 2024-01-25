@@ -131,6 +131,7 @@ class CalView extends React.Component {
 
 	drawCal = () => {
 		const canvas = this.bottomLayerRef.current;
+		if (!canvas) return
 		const context = canvas.getContext("2d");
 		const [width, height] = this.getCanvasActualSize(canvas)
 
@@ -170,6 +171,7 @@ class CalView extends React.Component {
 
 		const canvas1 = this.bottomLayerRef.current;
 		const canvas2 = this.topLayerRef.current;
+		if (!(canvas1 && canvas2)) return
 
 		const context1 = canvas1.getContext("2d");
 		const context2 = canvas2.getContext("2d");

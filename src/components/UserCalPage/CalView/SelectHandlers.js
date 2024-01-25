@@ -61,6 +61,7 @@ export const mouseDown = (component) => {
 export const mouseMove = (component) => {
 	return (e) => {
 		const canvas = component.topLayerRef.current;
+		if (!canvas) return
 		const context = canvas.getContext("2d");
 		const [currX, currY] = getComponentCoordinates(e, canvas)
 		if (prevClickX != -1 && prevClickY != -1 && e.buttons == 1) {
@@ -92,6 +93,7 @@ export const mouseUp = (component) => {
 	return (e) => {
 		if (prevClickX != -1 && prevClickY != -1) {
 			const canvas2 = component.topLayerRef.current;
+			if (!canvas2) return
 			const context2 = canvas2.getContext("2d");
 			context2.clearRect(0, 0, canvas2.width, canvas2.height)
 

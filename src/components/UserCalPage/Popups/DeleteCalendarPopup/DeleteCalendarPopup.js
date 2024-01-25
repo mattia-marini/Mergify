@@ -36,14 +36,14 @@ export default function DeleteCalendarPopup({ cal, setPopup, calViewRef }) {
 				<div className={Styles.buttons}>
 					<button
 						onClick={() => setPopup(false)}
-						className="blackWhite" style={{ flexGrow: "1" }}>Cancel</button>
+						className="lightGrayButton" style={{ flexGrow: "1" }}>Cancel</button>
 					<button
 						onClick={() => {
 							Object.entries(deleteList).forEach(([key, value]) => { cal.removeCalendar(key); })
 							calViewRef.current.forceUpdate()
 							setPopup(false)
 						}}
-						className="whiteBlack" style={{ width: "100px" }}  >Ok</button>
+						className="blackButton" style={{ width: "100px" }}  >Ok</button>
 				</div>
 			</div>
 

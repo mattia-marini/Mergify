@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Styles from "./Left.module.css"
+import { Link } from 'react-router-dom'
 
 export default function Left() {
+	const calPageRef = useRef()
+
+	const logIn = () => {
+		//check credenziali e database
+		calPageRef.current.click()
+	}
+
 	return (
 		<div id={Styles.left}>
 
@@ -13,7 +21,7 @@ export default function Left() {
 			</div>
 			<div id={Styles.inputs}>
 
-				<div style={{ display: "flex", flexDirection: "column", gap: "20px",  flexBasis:"60%", padding:"60px 0", justifyContent:"space-between" }}>
+				<div style={{ display: "flex", flexDirection: "column", gap: "20px", flexBasis: "60%", padding: "60px 0", justifyContent: "space-between" }}>
 					<div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
 						Email
 						<input type="text" placeholder="Insert a valid email address" />
@@ -25,20 +33,20 @@ export default function Left() {
 					</div>
 				</div>
 
-				<div style={{ display: "flex", flexDirection: "column", gap: "20px", justifyContent:"space-between", flexBasis:"40%" }}>
+				<div style={{ display: "flex", flexDirection: "column", gap: "20px", justifyContent: "space-between", flexBasis: "40%" }}>
 					<div style={{ display: "flex" }}>
 						<input type="checkbox" id="remember-passsword" value="Remember" style={{ border: "2pt solid blue" }} />
-						<label for="remember-passsword"> Remember password</label>
+						<label htmlFor="remember-passsword"> Remember password</label>
 						<div style={{ flexGrow: 1 }}></div>
 						<div>
 							<button type="button" ><u>Reset password</u></button>
 						</div>
 					</div>
 
+					<Link to="/user-cal" style={{ display: "none" }} ref={calPageRef}></Link>
 					<button
-						type="button"
-						class="blackButton"
-						onClick={() => { }}
+						className="blackButton"
+						onClick={logIn}
 					>Log in</button>
 					<div style={{ textAlign: "center" }}>
 						<b>Don't have an account?</b>
