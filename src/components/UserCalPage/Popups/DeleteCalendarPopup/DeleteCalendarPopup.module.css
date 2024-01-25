@@ -2,13 +2,13 @@
 		width: 100vw;
 		height: 100vh;
 		position: absolute;
-		background-color: rgba(0,0,0,0.5);
-		display: flex;
 		top: 0;
 		left: 0;
+		background-color: rgba(0,0,0,0.5);
+		display: grid;
+		place-items: center;
 		z-index: 3;
-		align-items: center;
-		justify-content: center
+		overflow:scroll
 	}
 
 	.externalFlex {
@@ -21,8 +21,6 @@
 		box-sizing: border-box;
 		background-color: var(--mfalmostwhite);
 		opacity: 1;
-		z-index: 3;
-		overflow: auto
 	}
 
 	.nameList{

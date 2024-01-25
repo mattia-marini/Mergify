@@ -12,7 +12,7 @@ export default function Right() {
 					left: 0,
 					top: 0,
 					zIndex: 0, }}>
-				{/* <img src="calendar.svg" alt="asdasd" width="600" height="600" style={{ opacity: 0.4 }} /> */}
+				<img src="/img/calendar.svg" alt="asdasd" width="600" height="600" style={{ opacity: 0.4 }} />
 			</div>
 
 			<div style={{ position: "absolute" }}>

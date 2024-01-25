@@ -9,8 +9,8 @@
 	text-align: center;
 	color: var(--mfdarkgray);
 	transition: ease all 1s;
+	min-width: none;
 	width: 100%;
-	overflow: auto;
 }
 
 #inputs {
@@ -21,4 +21,9 @@
 	justify-content: space-between;
 	height:  100%;
 	padding: 0 70px
+}
+@media (max-width: 1000px){
+  #left{
+  border-radius: 30px;
+  }
 }

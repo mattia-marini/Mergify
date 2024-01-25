@@ -15,3 +15,9 @@
 	transition: ease all 1s;
 	z-index: 1;
 }
+
+@media (max-width: 1000px){
+	#right{
+	  display:none;
+	}
+}

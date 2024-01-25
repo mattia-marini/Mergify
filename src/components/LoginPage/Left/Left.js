@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function Left() {
 	const calPageRef = useRef()
+	const registrationPageRef = useRef()
 
 	const logIn = () => {
 		//check credenziali e database
@@ -50,7 +51,10 @@ export default function Left() {
 					>Log in</button>
 					<div style={{ textAlign: "center" }}>
 						<b>Don't have an account?</b>
-						<button type="button" ><u>Create one</u></button>
+						<Link to="/create-new-account" style={{ display: "none" }} ref={registrationPageRef}></Link>
+						<button type="button"
+							onClick={() => registrationPageRef.current.click()}
+						><u>Create one</u></button>
 					</div>
 				</div>
 

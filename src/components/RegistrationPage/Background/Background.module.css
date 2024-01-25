@@ -34,3 +34,9 @@
 	right: 20%;
 	user-select: none;
  }
+
+ @media (max-width: 1000px){
+	#circle{
+		display: none;
+	}
+  }

@@ -9,6 +9,7 @@
 	text-align: center;
 	color: var(--mfdarkgray);
 	transition: ease all 1s;
+	min-width: none;
 	width: 100%;
 }
 
@@ -21,7 +22,7 @@
 	height:  100%;
 	padding: 0 70px
 }
-@media (max-width: 900px){
+@media (max-width: 1000px){
   #left{
   border-radius: 30px;
   }

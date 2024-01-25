@@ -81,9 +81,12 @@
 	outline: none;
   	color: white;
 	user-select: none;
+	padding: 0;
   }
+
   .eventName:focus{
   	background: none;
   	border-bottom:  1pt solid white;
+  	border: none;
 	outline: none;
   }
