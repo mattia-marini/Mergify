@@ -35,3 +35,10 @@ button {
 .whiteButton:hover {
 	background-color: var(--mfverylightgray);
 }
+
+input{
+	border-radius: 6px;
+	padding: 20px;
+	border: none;
+	outline-color: var(--mfgray);
+  }

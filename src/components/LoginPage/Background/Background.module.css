@@ -1,0 +1,36 @@
+ #left {
+ 	background-color: var(--mfwhitegray);
+ 	width: 50vw;
+ 	height: 100vh
+ }
+
+ #right {
+ 	background-color: rgb(56, 56, 56);
+ 	width: 50vw;
+ 	height: 100vh;
+	display: flex;
+	position: relative;
+ 	overflow: hidden
+ }
+
+ #m {
+	color: var(--mfgray);
+	position: absolute;
+	max-width: fit-content;
+	max-height: fit-content;
+	right: 0;
+	top: -100px;
+ 	font-size: 400pt;
+	user-select: none;
+ }
+
+ #circle {
+	background-color: var(--mfgray);
+	position: absolute;
+	height: 400px;
+	width: 400px;
+	border-radius: 100%;
+	bottom: 10%;
+	right: 20%;
+	user-select: none;
+ }
