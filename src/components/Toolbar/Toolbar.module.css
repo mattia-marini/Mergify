@@ -20,22 +20,15 @@
 	display: flex;
 }
 
-#tools {
+#middle {
 	box-sizing: border-box;
+	display: grid;
+	place-items: center;
 	border-radius: 12px;
 	flex-grow: 1;
 	background-color: var(--mfalmostwhite);
 	height: var(--toolbar-height);
 }
-
-#searchBar {
-	height: 100%;
-	box-sizing: border-box;
-	border-Radius: 10px;
-	background-color: var(--mfalmostwhite);
-	font-size: medium;
-}
- 
 
 #user {
 	width: 300px;

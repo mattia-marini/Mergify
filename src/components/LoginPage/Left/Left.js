@@ -50,7 +50,7 @@ export default function Left() {
 						onClick={logIn}
 					>Log in</button>
 					<div style={{ textAlign: "center" }}>
-						<b>Don't have an account?</b>
+						Don't have an account?
 						<Link to="/create-new-account" style={{ display: "none" }} ref={registrationPageRef}></Link>
 						<button type="button"
 							onClick={() => registrationPageRef.current.click()}

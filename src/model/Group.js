@@ -1,4 +1,4 @@
-class Group { 
+export default class Group { 
 	constructor(name, description) {
 		this.name = name
 		this.description = description

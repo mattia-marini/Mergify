@@ -1,12 +1,15 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import Background from '../LoginPage/Background'
 import Styles from "./NoPage.module.css"
 import { Link } from 'react-router-dom'
 import Card from '../Card/Card'
+import { userContext } from '../../App'
 
 export default function GoToLogin() {
 	const loginPageRef = useRef()
 	const calPageRef = useRef()
+
+	const user = useContext(userContext)
 
 	return (
 		<Card background={<Background />}>
@@ -17,9 +20,8 @@ export default function GoToLogin() {
 				<Link to="/user-cal" style={{ display: "none" }} ref={calPageRef}></Link>
 				<button
 					onClick={() => {
-						//controlla se sono salvate info user
-						if (true) loginPageRef.current.click()
-						else calPageRef.current.click()
+						if (user) calPageRef.current.click()
+						else loginPageRef.current.click()
 					}}
 					className="blackButton" >Return to the site</button>
 			</div>

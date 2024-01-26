@@ -74,7 +74,7 @@ export const mouseMove = (component) => {
 		else if (draggedEvent != null) {
 			//component.cal.events[draggedEvent.id] = 
 			//console.log("muovo")
-			const calEvent = component.cal.events[draggedEvent.dataset.calendar][draggedEvent.id]
+			const calEvent = component.cal.events[draggedEvent.dataset.calendar][draggedEvent.dataset.id]
 			const [hour, minute] = getTimeFromCoordinate(component, currY)
 			if (draggedBorder == 1) {
 				calEvent.startDate.setHours(hour)

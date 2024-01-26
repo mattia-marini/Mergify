@@ -81,7 +81,7 @@ class CalView extends React.Component {
 				if (isSameWeek(event.startDate, this.props.currWeek)) {
 
 					v.push(
-						<div className={Styles.outerEvent} key={index} id={index} data-calendar={calendar}
+						<div className={Styles.outerEvent} key={index} id={`${calendar}:${index}`} data-calendar={calendar} data-id={index}
 							onDoubleClick={handleDoubleClick(this)}
 							onMouseMove={handleBorders()}
 							onMouseLeave={handleMouseLeave()}
