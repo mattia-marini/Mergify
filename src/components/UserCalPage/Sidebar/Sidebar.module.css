@@ -5,13 +5,13 @@
 .sidebar {
 	display: flex;
 	flex-direction: column;
-	height: calc(100% - 20px);
+	height: calc(100%);
 	width: 300px;
 	align-items: center;
 	padding: 20px;
 	border-radius: 12px;
 	background-color: var(--mfalmostwhite);
-	margin: 20px 20px 0 20px;
+	margin: 0px 30px 0 20px;
 	box-sizing: border-box;
 	justify-items: center;
 	padding-top: 40px;

@@ -1,0 +1,23 @@
+#main{
+	display:flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	overflow: auto;
+	font-family: "ShoikaLight";
+	background-color: var(--mfwhitegray);
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+}
+
+#hflex {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+}
+
+@media (max-width: 900px) {
+	.vflex {
+		width: 900px;
+	}
+}

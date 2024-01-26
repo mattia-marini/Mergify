@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { useState } from 'react'
 import Styles from "./Toolbar.module.css"
-import AccountDetailsPopup from '../Popups/AccountDetailsPopup'
+import AccountDetailsPopup from '../../UserCalPage/Popups/AccountDetailsPopup'
 import { Link } from 'react-router-dom'
 
 export default function Toolbar({ ...props }) {
@@ -16,14 +16,12 @@ export default function Toolbar({ ...props }) {
 			<div id={Styles.navigation}>
 
 				<Link to="/user-cal" style={{ display: "none" }} ref={calPageRef}></Link>
-				<button onClick={() => calPageRef.current.click()} className='blackButton' style={{ borderRadius: 0 }}> My cal </button>
+				<button onClick={() => calPageRef.current.click()} className='whiteButton' style={{ borderRadius: 0 }}> My cal </button>
 				<Link to="/user-groups" style={{ display: "none" }} ref={groupsPageRef}></Link>
-				<button onClick={() => groupsPageRef.current.click()} className='whiteButton' style={{ borderRadius: "0 10px 10px 0" }}> My groups </button>
+				<button onClick={() => groupsPageRef.current.click()} className='blackButton' style={{ borderRadius: "0 10px 10px 0" }}> My groups </button>
 			</div>
 			<div id={Styles.tools} style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center" }}>
-				<div style={{ textAlign: "center" }}>
-					Mio calendario
-				</div>
+				<input type="text" placeholder="Search for group" id={Styles.searchBar}/>
 			</div>
 			<div id={Styles.user}>
 				<button
@@ -41,6 +39,6 @@ export default function Toolbar({ ...props }) {
 					onClick={() => { loginPageRef.current.click() }}
 				>Log out</button>
 			</div>
-		</div >
+		</div>
 	)
 }

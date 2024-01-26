@@ -1,0 +1,20 @@
+#vflex {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	background-color: var(--mfalmostwhite);
+	text-align: center;
+}
+
+#container {
+	display: grid;
+	place-items: center;
+	height: 100vh;
+}
+
+#buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	gap: 20px;
+}

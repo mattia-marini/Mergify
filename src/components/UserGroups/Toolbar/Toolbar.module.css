@@ -1,18 +1,18 @@
-:root{
-	--toolbar-height:50px;
+:root {
+	--toolbar-height: 50px;
 }
 
 
 #toolbar {
 	display: flex;
-	gap: 10px;
-	color: var(--mfdarkgray)
+	gap: 30px;
+	color: var(--mfdarkgray);
+	padding: 30px 30px 30px 0
 }
 
 
-#navigation{
+#navigation {
 	box-sizing: border-box;
-	margin: 20px 0 0 0;
 	border-radius: 12px;
 	max-width: 300px;
 	flex-grow: 1;
@@ -22,22 +22,29 @@
 
 #tools {
 	box-sizing: border-box;
-	margin: 20px 0 0 0;
 	border-radius: 12px;
 	flex-grow: 1;
 	background-color: var(--mfalmostwhite);
 	height: var(--toolbar-height);
 }
 
+#searchBar {
+	height: 100%;
+	box-sizing: border-box;
+	border-Radius: 10px;
+	background-color: var(--mfalmostwhite);
+	font-size: medium;
+}
+ 
+
 #user {
 	width: 300px;
 	height: var(--toolbar-height);
 	border-radius: 12px;
 	background-color: var(--mfalmostwhite);
-	margin: 20px 20px 0 20px;
 	box-sizing: border-box;
 	display: flex;
-	align-items:center;
+	align-items: center;
 }
 
 
