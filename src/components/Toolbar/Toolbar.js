@@ -40,22 +40,7 @@ export default function Toolbar({ left, middle, right }) {
 						onClick={() => { loginPageRef.current.click() }}
 					>Log out</button>
 				</div>
-<<<<<<< Updated upstream
 				: right}
 		</div >
-=======
-			</div>
-			<div id='user'>
-				<button
-					onClick={() => setPopup(true)}
-					id='pip'
-				>
-					M
-				</button>
-				{/* {popup ? <AccountDetailsPopup setPopup={setPopup} /> : null} */}
-				<div>Mario Rossi</div>
-			</div>
-		</div>
->>>>>>> Stashed changes
 	)
 }

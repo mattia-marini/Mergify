@@ -166,7 +166,7 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
     }
 
     // Parse Ical è asincrona. La funzione "callback" viene chiamata quando il parsing del file è terminato
-    parseICal(e.target.files[0], callback)
+    parseICal(e.target.files[0], callback, true)
 
   }
 

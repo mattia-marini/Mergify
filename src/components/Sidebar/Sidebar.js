@@ -162,7 +162,7 @@ export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef
 			calViewRef.current.forceUpdate()
 		}
 
-		parseICal(e.target.files[0], callback)
+		parseICal(e.target.files[0], callback, true)
 
 	}
 
