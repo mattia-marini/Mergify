@@ -3,7 +3,7 @@ import Styles from "./UserGroups.module.css"
 import React, { useContext, useState } from 'react'
 import Sidebar from "./Sidebar/Sidebar"
 
-import Toolbar from "../Toolbar"
+import Toolbar from "../../components/Toolbar"
 import { userContext } from "../../App"
 import Entry from "./Entry"
 import Group from "../../model/Group"

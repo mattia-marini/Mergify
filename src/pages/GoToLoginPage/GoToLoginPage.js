@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import Background from '../LoginPage/Background'
 import Styles from "./GoToLoginPage.module.css"
 import { Link } from 'react-router-dom'
-import Card from '../Card/Card'
+import Card from '../../components/Card'
 
 export default function GoToLogin() {
   const loginPageRef = useRef()

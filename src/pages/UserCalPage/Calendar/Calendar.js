@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import Styles from "./Calendar.module.css"
 import CalView from "../CalView"
-import Toolbar from "../../Toolbar"
+import Toolbar from "../../../components/Toolbar"
 import Sidebar from "../Sidebar"
 import Calendario from "../../../model/Calendario"
 

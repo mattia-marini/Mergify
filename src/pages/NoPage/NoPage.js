@@ -2,7 +2,7 @@ import React, { useContext, useRef } from 'react'
 import Background from '../LoginPage/Background'
 import Styles from "./NoPage.module.css"
 import { Link } from 'react-router-dom'
-import Card from '../Card/Card'
+import Card from '../../components/Card'
 import { userContext } from '../../App'
 
 export default function GoToLogin() {

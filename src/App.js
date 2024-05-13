@@ -1,11 +1,11 @@
 import './App.css';
 
-import UserCal from "./components/UserCalPage"
-import LoginPage from "./components/LoginPage"
-import RegistrationPage from "./components/RegistrationPage"
-import UserGroups from "./components/UserGroups"
-import GoToLoginPage from "./components/GoToLoginPage"
-import NoPage from "./components/NoPage"
+import UserCal from "./pages/UserCalPage"
+import LoginPage from "./pages/LoginPage"
+import RegistrationPage from "./pages/RegistrationPage"
+import UserGroupsPage from "./pages/UserGroupsPage"
+import GoToLoginPage from "./pages/GoToLoginPage"
+import NoPage from "./pages/NoPage"
 import User from "./model/User"
 
 
@@ -31,7 +31,7 @@ function App() {
 			{user ?
 				<>
 					<Route path='/user-cal' element={<userContext.Provider value={user}><UserCal /></userContext.Provider>} />
-					<Route path='/user-groups' element={<userContext.Provider value={user}><UserGroups /></userContext.Provider>} />
+					<Route path='/user-groups' element={<userContext.Provider value={user}><UserGroupsPage /></userContext.Provider>} />
 				</> :
 				<>
 					<Route path='/user-cal' element={<GoToLoginPage />} />

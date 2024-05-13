@@ -1,6 +1,6 @@
 import Styles from "./Toolbar.module.css"
 import React, { useRef, useState } from 'react'
-import AccountDetailsPopup from '../UserCalPage/Popups/AccountDetailsPopup'
+import AccountDetailsPopup from '../../pages/UserCalPage/Popups/AccountDetailsPopup'
 import { Link } from 'react-router-dom'
 
 export default function Toolbar({ left, middle, right }) {
