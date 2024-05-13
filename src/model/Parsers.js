@@ -2,8 +2,8 @@ import ICAL from 'ical.js';
 import MFEvent from "../model/Event"
 import { splitEvent } from "../model/Event"
 
+// Chiama la funzione "callback" con il nome del file ics e un array degli eventi contenuti nel suddetto file
 export function parseICal(icsFile, callback) {
-
 
 	if (icsFile) {
 		const reader = new FileReader();
@@ -30,16 +30,10 @@ export function parseICal(icsFile, callback) {
 				else
 					events.push(event)
 			});
-			console.log(events)
-			// const name = comp.getFirstSubcomponent("VCALENDAR")
-			//.getFirstPropertyValue("X-WR-CALNAME")
 
 			callback(icsFile.name, events)
 		};
 
 	}
 	return null
-
-	// Read the content of the ics file (assuming you have it as a string)
-
 }

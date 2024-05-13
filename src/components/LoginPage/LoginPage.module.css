@@ -1,24 +1,24 @@
 #main {
-	width: 100vw;
-	height: 100vh;
-	overflow: scroll;
-	box-sizing: border-box;
-	display: grid;
-	place-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: scroll;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
 }
 
 #card {
-	display: flex;
-	z-index: 1;
-	box-sizing: border-box;
-	justify-content: space-between;
-	flex-direction: row;
-	width: 80%;
-	height: 80%;
+  display: flex;
+  z-index: 1;
+  box-sizing: border-box;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 80%;
+  height: 80%;
 }
 
 @media (max-height: 1000px) {
-	#card {
-		height: calc(0.8 * 900px);
-	}
+  #card {
+    height: calc(0.8 * 900px);
+  }
 }
