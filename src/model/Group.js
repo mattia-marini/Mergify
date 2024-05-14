@@ -1,3 +1,4 @@
+// Rappresenta gruppo di utenti
 export default class Group { 
 	constructor(name, description) {
 		this.name = name
