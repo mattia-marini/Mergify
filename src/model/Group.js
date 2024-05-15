@@ -11,4 +11,4 @@ export default class Group {
 		this.components.push(component)
 		component.groups.push(this)
 	}
-}
+

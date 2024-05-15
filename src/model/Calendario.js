@@ -1,6 +1,6 @@
-// Gestisce collezione di eventi in modo efficace
 import Event from "./Event"
 
+// Gestisce collezione di eventi in modo efficace
 class Calendario {
 
   // Ogni entrata del dizionario corrisponde ad un diverso calendario

@@ -6,6 +6,7 @@ import Styles from "./LoginPage.module.css"
 
 export default function LoginPage() {
 	return (
+
 		<div id={Styles.main}>
 			<Background></Background>
 			<div id={Styles.card} >

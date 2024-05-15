@@ -5,7 +5,7 @@ import { splitEvent } from "../model/Event"
 // Chiama la funzione "callback" con il nome del file ics e un array degli eventi contenuti nel suddetto file
 // Se normalize è true allora ogni evento non potrà essere a cavallo della giornata
 export function parseICal(icsFile, callback, normalize = false) {
-
+  
   if (icsFile) {
     const reader = new FileReader();
 

@@ -1,4 +1,6 @@
 import { differenceInDays } from "../utils/Date"
+
+// Classe che rappresenta un intervallo di tempo arbitrario. Di fatto, una coppia di date
 class Event {
 
 

@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from 'react'
 import { getMonday, getMonthDays, firstOfTheMonth, getNormalizedDay, isSameDay, nextWeek, prevMonth, nextMonth } from '../../utils/Date'
 import "./Sidebar.css"
 import { parseICal } from "../../model/Parsers"
-import { getMonth } from 'date-fns'
 import DeleteCalendarPopup from '../Popups/DeleteCalendarPopup/DeleteCalendarPopup'
 
 const months = {
@@ -22,6 +21,7 @@ const months = {
 		11: "Dicembre",
 	}
 }
+
 export default function Sidebar({ currWeek, setCurrWeek, cal, setCal, calViewRef }) {
 
 
